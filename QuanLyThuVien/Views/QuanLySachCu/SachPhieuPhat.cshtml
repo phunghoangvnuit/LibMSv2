@@ -1,0 +1,43 @@
+﻿@model List<ThongKeSachBiPhat>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main>
+    <div class="text-start d-flex" style="margin: 12px 0;">
+        <a asp-controller="QuanLySachCu" asp-action="SachPhieuPhat" class="btn btn-outline-primary @(Context.Request.Path == "/QuanLySachCu/SachPhieuPhat" ? "active" : "")" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+            Danh sách sách bị phạt
+        </a>
+        <a asp-controller="QuanLySachCu" asp-action="SachNhapKhoQua2Nam" class="btn btn-outline-primary @(Context.Request.Path == "/QuanLySachCu/SachNhapKhoQua2Nam" ? "active" : "")" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+            Danh sách sách nhập kho quá 2 năm
+        </a>
+    </div>
+    <h2 class="lv2" style="margin-bottom: 18px;">Sách bị phạt</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-primary">
+                <th scope="col">Mã sách</th>
+                <th scope="col">Tên sách</th>
+                <th scope="col">Tên tác giả</th>
+                <th scope="col">Tên thể loại</th>
+                <th scope="col">Ngày nhập</th>
+                <th scope="col">Giá bán</th>
+                <th scope="col">Số lượng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.IdSach</th>
+                    <td>@item.TenSach</td>
+                    <td>@item.TenTacGia</td>
+                    <td>@item.TenTheLoai</td>
+                    <td>@item.NgayNhap.ToString("dd/MM/yyyy")</td>
+                    <td>@item.GiaBan.ToString("#,###")</td>
+                    <td>@item.SoLuong</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>

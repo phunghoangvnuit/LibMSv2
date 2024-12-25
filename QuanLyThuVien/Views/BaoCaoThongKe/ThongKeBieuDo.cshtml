@@ -1,0 +1,89 @@
+﻿@model ThongKeBieuDo
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main>
+    <div class="text-start d-flex" style="margin: 12px 0;">
+        <a asp-controller="BaoCaoThongKe" asp-action="SachDuocMuonNhieu" class="btn btn-outline-primary @(Context.Request.Path == "/BaoCaoThongKe/SachDuocMuonNhieu" ? "active" : "")" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+            Sách được mượn nhiều
+        </a>
+        <a asp-controller="BaoCaoThongKe" asp-action="SachDuoi10Cuon" class="btn btn-outline-primary @(Context.Request.Path == "/BaoCaoThongKe/SachDuoi10Cuon" ? "active" : "")" style="border-top-left-radius: 0; border-bottom-left-radius: 0;border-top-right-radius: 0; border-bottom-right-radius: 0;">
+            Sách có số lượng dưới 10
+        </a>
+        <a asp-controller="BaoCaoThongKe" asp-action="ThongKeBieuDo" class="btn btn-outline-primary @(Context.Request.Path == "/BaoCaoThongKe/ThongKeBieuDo" ? "active" : "")" style="border-top-left-radius: 0; border-bottom-left-radius: 0;border-top-right-radius: 0; border-bottom-right-radius: 0;">
+            Thống kê sách mượn
+        </a>
+        <a asp-controller="BaoCaoThongKe" asp-action="BaoCaoDoanhThuLoiNhuanThang" class="btn btn-outline-primary @(Context.Request.Path == "/BaoCaoThongKe/BaoCaoDoanhThuLoiNhuanThang" ? "active" : "")" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+            Thống kê doanh thu/lợi nhuận cho thuê
+        </a>
+    </div>
+   @*  <h2 class="lv2" style="margin-bottom: 18px;">Thống kê biểu đồ</h2> *@
+    <form method="get" asp-controller="BaoCaoThongKe" asp-action="ThongKeBieuDo" style="width:50%;">
+        <fieldset>
+            <div class="form-group d-flex align-items-end">
+                <div style="flex:auto; margin-right: 12px;">
+                    <label asp-for="TuThang" class="form-label mt-4">Từ tháng <span class="text-danger">*</span></label>
+                    <select asp-for="TuThang" asp-items="ViewBag.Thangs" class="form-control flex" required placeholder="Từ tháng">
+                    </select>
+                </div>
+                <div style="flex:auto;">
+                    <label asp-for="DenThang" class="form-label mt-4">Đến Tháng <span class="text-danger">*</span></label>
+                    <select asp-for="DenThang" asp-items="ViewBag.Thangs" class="form-control" required placeholder="Đến tháng">
+                    </select>
+                </div>
+                <div style="margin-left:12px; flex:auto;">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-plus-circle"></i>&nbsp; Thống kê
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <canvas id="myChart" style="height:450px;width:100%;max-width:100%"></canvas>
+</main>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function generateRandomColors(numColors) {
+            let colors = [];
+            for (let i = 0; i < numColors; i++) {
+                colors.push(getRandomColor());
+            }
+            return colors;
+        }
+
+        var xValues = [@Html.Raw(Model.XValues)];
+        var yValues = [@Html.Raw(Model.YValues)];
+        var barColors = generateRandomColors(@Model.MonthCount);
+
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "@Html.Raw(Model.Title)"
+                }
+            }
+        });
+    </script>
+}

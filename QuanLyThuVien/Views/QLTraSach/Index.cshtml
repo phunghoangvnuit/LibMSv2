@@ -1,0 +1,109 @@
+﻿@model SachTraVM
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <form method="post" asp-controller="QLTraSach" asp-action="Create" style="width:50%;">
+        <input type="hidden" asp-for="IDPhieuMuon" />
+        <fieldset>
+            <legend>Thông tin trả sách</legend>
+            <div class="form-group d-flex align-items-end">
+                <div style="flex:auto; margin-right: 12px;">
+                    <label asp-for="IDSach" class="form-label mt-4">Mã sách <span class="text-danger">*</span></label>
+                    <input asp-for="IDSach" class="form-control flex" required placeholder="Mã sách" readonly />
+                    <span asp-validation-for="IDSach" class="text-danger"></span>
+                </div>
+                <div style="flex:auto;">
+                    <label asp-for="TenSach" class="form-label mt-4">Tên sách <span class="text-danger">*</span></label>
+                    <input asp-for="TenSach" class="form-control" required placeholder="Tên sách" readonly />
+                    <span asp-validation-for="TenSach" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group d-flex align-items-end">
+                <div style="flex:auto; margin-right: 12px;">
+                    <label asp-for="NgayTra" class="form-label mt-4">Ngày trả <span class="text-danger">*</span></label>
+                    <input asp-for="NgayTra" type="date" class="form-control" required />
+                </div>
+                <div style="flex:auto;">
+                    <label asp-for="TinhTrang" class="form-label mt-4">Tình Trạng sách <span class="text-danger">*</span></label>
+                    <select asp-for="TinhTrang" class="form-control" required>
+                        <option value="-1">-- Chọn --</option>
+                        <option value="1">Bình thường</option>
+                        <option value="2">Sách bị rách</option>
+                        <option value="3">Sách bị mất trang</option>
+                        <option value="4">Sách bị mất</option>
+                    </select>
+                </div>
+            </div>
+            @if (Model.HinhThucMuon == 2)
+            {
+                <div class="form-group d-flex align-items-end">
+                    <div style="flex:auto; margin-right: 12px;">
+                        <label class="form-label mt-4">Hình Thức Mượn <span class="text-danger">*</span></label>
+                        <input  class="form-control" readonly value="Mượn có tính phí ngày" required />
+                    </div>
+                    <div style="flex:auto; ">
+                        <label class="form-label mt-4">Số ngày mượn <span class="text-danger">*</span></label>
+                        <input class="form-control" readonly value="@Model.SoNgayMuon" required />
+                    </div>
+                </div>
+                <div class="form-group d-flex align-items-end">
+                    <div style="flex:auto; margin-right: 12px;">
+                        <label class="form-label mt-4">Tiền mượn phải trả <span class="text-danger">*</span></label>
+                        <input class="form-control" readonly value="@Model.TienPhaiTra.ToString("#,###")" required />
+                    </div>
+                    <div style="flex:auto; ">
+                       
+                    </div>
+                </div>
+            }
+            <div class="form-group d-flex align-items-end">
+                <div style="flex:auto; margin-right: 12px;">
+                    <label asp-for="MucDo" class="form-label mt-4">Mức độ hư hỏng <span class="text-danger"></span></label>
+                    <select asp-for="MucDo" class="form-control">
+                        <option value="-1">-- Chọn --</option>
+                        <option value="1">Ít</option>
+                        <option value="2">Trung bình</option>
+                        <option value="3">Nhiều</option>
+                    </select>
+                </div>
+                <div style="flex:auto;">
+                   
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoLuongTra" class="form-label mt-4">Số lượng trả</label>
+                <input asp-for="SoLuongTra" type="number" class="form-control" required placeholder="Nhập số lượng trả" />
+                <span asp-validation-for="SoLuongTra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GhiChuTra" class="form-label mt-4">Ghi chú</label>
+                <input asp-for="GhiChuTra" type="text" class="form-control" placeholder="Nhập ghi chú trả" />
+            </div>
+        </fieldset>
+
+        <fieldset style="margin-top:25px">
+            <a asp-controller="QuanLyMuonTraSach" asp-action="ViewSachMuon" class="btn btn-outline-primary" style="margin-right: 4px">Quay lại</a>
+            <button type="submit" class="btn btn-success">Trả sách</button>
+        </fieldset>
+    </form>
+</main>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("select[name='TinhTrang']").on('change', function () {
+                var selected = this.options[this.selectedIndex].value || -1;
+                if (selected <= 1 || selected >= 4) { 
+                    $("select[name='MucDo']").val(-1);
+                    $("select[name='MucDo']").prop('disabled', true);
+                } else {
+                    $("select[name='MucDo']").prop('disabled', false);
+                }
+            });
+        });
+    </script>
+}
