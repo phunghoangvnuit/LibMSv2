@@ -6,27 +6,26 @@
 <main>
     <form method="post" style="width: 50%;">
         <fieldset>
-            <legend>Tạo mới tài khoản</legend>
+            <legend>Create new account</legend>
             <div class="form-group">
-                <label asp-for="TenDangNhap" class="form-label mt-4">Tên tài khoản</label>
-                <input asp-for="TenDangNhap" type="text" class="form-control" id="TenDangNhap" placeholder="Nhập tên tài khoản">
+                <label asp-for="TenDangNhap" class="form-label mt-4">Username</label>
+                <input asp-for="TenDangNhap" type="text" class="form-control" id="TenDangNhap" placeholder="Enter Username">
                 <span asp-validation-for="TenDangNhap" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MatKhau" class="form-label mt-4">Mật khẩu</label>
-                <input asp-for=MatKhau type="password" class="form-control" id="MatKhau" placeholder="Nhập mật khẩu" autocomplete="off">
+                <label asp-for="MatKhau" class="form-label mt-4">Password</label>
+                <input asp-for=MatKhau type="password" class="form-control" id="MatKhau" placeholder="Enter password" autocomplete="off">
                 <span asp-validation-for="MatKhau" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="ConfirmInputPassword" class="form-label mt-4">Xác nhận mật khẩu</label>
-                <input type="password" required class="form-control" id="ConfirmInputPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu" autocomplete="off">
+                <label for="ConfirmInputPassword" class="form-label mt-4">Confirm Password</label>
+                <input type="password" required class="form-control" id="ConfirmInputPassword" name="confirmPassword" placeholder="Enter Password One More Time" autocomplete="off">
             </div>
             <div class="form-group">
-                <label asp-for="VaiTro" class="form-label mt-4">Chọn vai trò</label>
+                <label asp-for="VaiTro" class="form-label mt-4">Role</label>
                 <select class="form-select" id="VaiTro" asp-for="VaiTro">
-                    <option>Admin</option>
-                    <option>Thủ thư</option>
-                    <option>Độc giả</option>
+                    <option>Librarian</option>
+                    <option>Normal Account</option>
                 </select>
             </div>
             <div class="mt-3">

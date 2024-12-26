@@ -20,9 +20,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Quản Lý Thư Viện</title>
-    <link rel="stylesheet" href="~/css/bootswatch_flatly.css" />
+    <title>@ViewData["Title"] - VNU IS eLibrary</title>
+    <link rel="stylesheet" href="~/css/bootswatch_flatly.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+
+    <!-- Roboto Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
@@ -32,8 +38,8 @@
         <div class="sidebar-brand">
             <a asp-controller="Home" asp-action="Index">
                 <h2 class="lv2">
-                    <img src="~/Images/logo/logo-svg.webp" class="logo" />
-                    <span>EAUT Libary</span>
+                    <img src="~/Images/logo/logo-svg.webp" class="logo" asp-append-version="true" />
+                    <span>VNU IS eLibary</span>
                 </h2>
             </a>
         </div>
@@ -44,7 +50,7 @@
                         <span>
                             <i class="bi bi-house"></i>
                         </span>
-                        <span>Dasboard</span>
+                        <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
@@ -52,7 +58,7 @@
                         <span>
                             <i class="bi bi-server"></i>
                         </span>
-                        <span>Quản trị hệ thống</span>
+                        <span>System Management</span>
                     </a>
                 </li>
                 <li>
@@ -60,7 +66,7 @@
                         <span>
                             <i class="bi bi-book"></i>
                         </span>
-                        <span>Quản lý kho sách</span>
+                        <span>Book Management</span>
                     </a>
                 </li>
                 <li>
@@ -68,7 +74,7 @@
                         <span>
                             <i class="bi bi-file-person"></i>
                         </span>
-                        <span>Quản lý độc giả</span>
+                        <span>Patron Management</span>
                     </a>
                 </li>
                 <li>
@@ -76,33 +82,15 @@
                         <span>
                             <i class="bi bi-file-earmark-ruled"></i>
                         </span>
-                        <span>Quản lý mượn trả sách</span>
+                        <span>Issue Book Management</span>
                     </a>
                 </li>
-                <li>
-                    <a asp-controller="BaoCaoThongKe" asp-action="SachDuocMuonNhieu" id="BaoCaoThongKe" title="Báo cáo thống kê" class="sidebar-link">
-                        <span>
-                            <i class="bi bi-file-earmark-bar-graph"></i>
-                        </span>
-                        <span>Báo cáo thống kê</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a asp-controller="QuanLySachCu" asp-action="SachPhieuPhat" id="QuanLySachCu" title="Sách cũ" class="sidebar-link">
-                        <span>
-                            <i class="bi bi-book-half"></i>
-                        </span>
-                        <span>Quản lý sách cũ</span>
-                    </a>
-                </li>
-
                 <li>
                     <a asp-controller="Login" asp-action="Index" title="Thoát">
                         <span>
                             <i class="bi bi-box-arrow-left"></i>
                         </span>
-                        <span>Thoát</span>
+                        <span>Logout</span>
                     </a>
                 </li>
             </ul>
@@ -122,11 +110,11 @@
                 <span>
                     <i class="bi bi-search"></i>
                 </span>
-                <input type="search" placeholder="Search here" id="txtSearch" />
+                <input type="search" placeholder="Search for loans by student id" id="txtSearch" />
             </div>
 
             <div class="user-wrapper">
-                <img src="~/Images/avatar/admin.png" alt="" width="30px" height="30px">
+                <img src="~/Images/avatar/default_avatar.jpg" alt="" width="40px" height="40px">
                 <div>
                     <h4 class="lv4">@data.TenDangNhap</h4>
                     <small>@data.VaiTro</small>

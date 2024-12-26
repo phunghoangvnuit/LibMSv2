@@ -35,6 +35,7 @@ namespace QuanLyThuVien.Controllers
                                     MaPM = pm.ID_PhieuMuon,
                                     TenNguoiTao = tt.TenThuThu,
                                     MaTheTV = ttv.ID_The,
+                                    MaSV = dg.MaSV,
                                     TenDg = dg.TenDocGia,
                                     MaSach = s.ID_Sach,
                                     TenSach = s.TenSach,
@@ -48,7 +49,7 @@ namespace QuanLyThuVien.Controllers
             if (!string.IsNullOrWhiteSpace(filter))
             {
                 dataPhieuMuons = dataPhieuMuons
-                    .Where(x => x.TenDg.ToLower().Contains(filter.ToLower()));
+                    .Where(x => x.MaSV.ToLower().Contains(filter.ToLower()));
             } 
 
             var ls = _db.LSTraSach
