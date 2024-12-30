@@ -8,39 +8,39 @@
     <div>
         <div class="text-start d-flex" style="margin: 12px 0;">
             <a asp-controller="QuanLyMuonTraSach" asp-action="ViewSachMuon" class="btn btn-outline-primary @(Context.Request.Path == "/QuanLyMuonTraSach/ViewSachMuon" ? "active" : "")" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                Phiếu đang mượn
+                Borrowing records
             </a>
             <a asp-controller="QuanLyMuonTraSach" asp-action="ViewSachTra" class="btn btn-outline-primary @(Context.Request.Path == "/QuanLyMuonTraSach/ViewSachTra" ? "active" : "")" style="border-top-left-radius: 0; border-bottom-left-radius: 0;border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                Phiếu đã trả
+                Borrowed records
             </a>
             <a asp-controller="QuanLyMuonTraSach" asp-action="ViewSachPhat" class="btn btn-outline-primary @(Context.Request.Path == "/QuanLyMuonTraSach/ViewSachPhat" ? "active" : "")" style="border-top-left-radius: 0; border-bottom-left-radius: 0;border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                Phiếu bị phạt
+                Fine Records
             </a>
             <a  href="#" class="btn btn-outline-primary" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                Tổng thẻ đang mượn : @ViewBag.TongTheDangMuon
+                Total records : @ViewBag.TongTheDangMuon
             </a>
         </div>
         <div class="text-end">
             <a asp-controller="QuanLyMuonTraSach" asp-action="CreatePhieuMuon" class="btn btn-success" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                Lập phiếu mượn
+                Create
             </a>
         </div>
         <hr />
         <table class="table table-hover">
             <thead>
                 <tr class="table-primary">
-                    <th scope="col">Số phiếu</th>
-                    <th scope="col">Tên độc giả</th>
-                    <th scope="col">Mã sách</th>
-                    <th scope="col">Tên sách</th>
-                    <th scope="col">Hình Ảnh Sách</th>
-                    <th scope="col">Số lượng mượn</th>
-                    <th scope="col">Ngày tạo phiếu</th>
-                    <th scope="col">Ngày hẹn trả</th>
-                    <th scope="col">Hình thức mượn</th>
-                    <th scope="col">Ghi chú mượn</th>
-                    <th scope="col">Trạng thái</th>
-                    <th scope="col">Hành động</th>
+                    <th scope="col">Record ID</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Created at</th>
+                    <th scope="col">Due to</th>
+                    <th scope="col">Borrow Type</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +66,7 @@
                                 <i class="bi bi-trash3"></i>
                             </a>
                             <a asp-controller="QLTraSach" asp-action="Index" asp-route-id="@item.MaPhieuMuon" class="btn btn-outline-success">
-                                <span>Trả sách</span>
+                                <span>Return</span>
                             </a>
                         </td>
                     </tr>

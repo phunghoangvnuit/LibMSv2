@@ -4,28 +4,28 @@
 }
 
 <main>
-    <h2 class="lv2">Danh sách độc giả</h2>
+    <h2 class="lv2">List patrons</h2>
     <div class="text-start d-flex justify-content-between" style="margin: 12px 0;">
         <a asp-controller="QuanLyDocGia" asp-action="Create" class="btn btn-outline-primary">
-            <i class="bi bi-plus-circle"></i>&nbsp; Tạo mới
+            <i class="bi bi-plus-circle"></i>&nbsp; Create
         </a>
         <form method="post" class="d-flex" asp-controller="QuanLyDocGia" asp-action="Search">
-            <input class="form-control me-sm-1" type="search" required name="searchInput" placeholder="Tìm theo tên, địa chỉ, email, sđt, masv ... ">
+            <input class="form-control me-sm-1" type="search" required name="searchInput" placeholder="Search by name, address, email, phone number, student id ... ">
             <button class="btn btn-primary" type="submit">Search</button>
         </form>
     </div>
     <table class="table table-hover">
         <thead>
             <tr class="table-primary">
-                <th scope="col">Mã độc giả</th>
-                <th scope="col">Mã Sinh Viên</th>
-                <th scope="col">Tên độc giả</th>
-                <th scope="col">Giới tính</th>
-                <th scope="col">Ngày sinh</th>
-                <th scope="col">Địa chỉ</th>
-                <th scope="col">Số điện thoại</th>
+                <th scope="col">Patron ID</th>
+                <th scope="col">Student ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Sexual</th>
+                <th scope="col">BoD</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
                 <th scope="col">Email</th>
-                <th scope="col">Hành động</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>

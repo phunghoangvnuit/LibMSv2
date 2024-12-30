@@ -73,8 +73,16 @@
       "PackagePath": "staticwebassets\\Images\\Books\\quantrihedieuhanhlinux.jpg"
     },
     {
+      "Id": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\wwwroot\\Images\\DJI_0552.jpg",
+      "PackagePath": "staticwebassets\\Images\\DJI_0552.jpg"
+    },
+    {
       "Id": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\wwwroot\\Images\\avatar\\default_avatar.jpg",
       "PackagePath": "staticwebassets\\Images\\avatar\\default_avatar.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\wwwroot\\Images\\logo\\4_Eng_golden_positive_text_Logo 6 copy 2.png",
+      "PackagePath": "staticwebassets\\Images\\logo\\4_Eng_golden_positive_text_Logo 6 copy 2.png"
     },
     {
       "Id": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\wwwroot\\Images\\logo\\logo-svg.webp",

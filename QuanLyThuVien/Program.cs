@@ -31,3 +31,5 @@ app.MapControllerRoute(
     pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
+
+// Contact: phunghoangvnuit@gmail.com

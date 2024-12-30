@@ -95,7 +95,7 @@ namespace QuanLyThuVien.Controllers
         {
             if (vaiTro.ToLower() != "thủ thư")
             {
-                TempData["error"] = "Bạn phải có quyền thủ thư để thực hiện chức năng này !";
+                TempData["error"] = "Only librarian can use this feature !";
                 return RedirectToAction("ViewSachMuon", "QuanLyMuonTraSach");
             } 
 
@@ -111,7 +111,7 @@ namespace QuanLyThuVien.Controllers
                 .Select(x => new SelectListItem(string.Format("{0} - {1}", x.MaSV, x.TenDocGia), x.MaTheThuVien))
                 .ToList();
 
-            docGias.Insert(0, new SelectListItem("-- Chọn độc giả --", ""));
+            docGias.Insert(0, new SelectListItem("-- Select patron --", ""));
             ViewBag.DocGias = docGias;
 
             List<SelectListItem> sachs = _db.Saches
@@ -119,16 +119,16 @@ namespace QuanLyThuVien.Controllers
                .ToList()
                .Select(x => new SelectListItem(string.Format("{0}", x.TenSach), x.ID_Sach.ToString()))
                .ToList();
-            sachs.Insert(0, new SelectListItem("-- Chọn sách --", ""));
+            sachs.Insert(0, new SelectListItem("-- Select book --", ""));
 
             ViewBag.Sachs = sachs;
 
             List<SelectListItem> hinhThucMuons =
                 new List<SelectListItem>()
                 {
-                    new SelectListItem("-- Chọn hình thức --", ""),
-                    new SelectListItem("Mượn không tính phí", "1", true),
-                    new SelectListItem("Mượn có tính phí ngày", "2")
+                    new SelectListItem("-- Select borrow type --", ""),
+                    new SelectListItem("Free borrow", "1", true),
+                    new SelectListItem("Paid borrow", "2")
                 };
 
             ViewBag.HinhThucMuons = hinhThucMuons;
@@ -153,23 +153,23 @@ namespace QuanLyThuVien.Controllers
                 .Select(x => new SelectListItem(string.Format("{0} - {1}", x.MaSV, x.TenDocGia), x.MaTheThuVien))
                 .ToList();
 
-            docGias.Insert(0, new SelectListItem("-- Chọn độc giả --", ""));
+            docGias.Insert(0, new SelectListItem("-- Select patron --", ""));
             ViewBag.DocGias = docGias;
 
             List<SelectListItem> sachs = _db.Saches
                .Where(x => x.SoLuong > 0) // Lấy ra sách có số lượng 
                .Select(x => new SelectListItem(string.Format("{0}", x.TenSach), x.ID_Sach.ToString()))
                .ToList();
-            sachs.Insert(0, new SelectListItem("-- Chọn sách --", ""));
+            sachs.Insert(0, new SelectListItem("-- Select book --", ""));
 
             ViewBag.Sachs = sachs;
 
             List<SelectListItem> hinhThucMuons =
                new List<SelectListItem>()
                {
-                    new SelectListItem("-- Chọn hình thức --", ""),
-                    new SelectListItem("Mượn không tính phí", "1", true),
-                    new SelectListItem("Mượn có tính phí ngày", "2")
+                    new SelectListItem("-- Select borrow type --", ""),
+                    new SelectListItem("Free borrow", "1", true),
+                    new SelectListItem("Paid borrow", "2")
                };
 
             ViewBag.HinhThucMuons = hinhThucMuons;
@@ -179,7 +179,7 @@ namespace QuanLyThuVien.Controllers
             
             if (theThuVien == null || model.MaTheThuVien <= 0)
             {
-                TempData["error"] = "Vui lòng chọn thẻ thư viện !";
+                TempData["error"] = "Please select your library card !";
                 return View("CreatePhieuMuon", model);
             }
 
@@ -197,7 +197,7 @@ namespace QuanLyThuVien.Controllers
 
             if (slPhieuMuonChuaTra >= 3) // Số phiếu mượn chưa trả lớn hơn 3
             {
-                TempData["error"] = "Độc giả đã có tối đa 3 phiếu mượn chưa trả ! Phải trả lại trước khi tạo phiếu mới !";
+                TempData["error"] = "The patron has already reached the maximum limit of 3 borrowed items not yet returned! They must return them before creating a new borrowing request!";
                 return RedirectToAction("ViewSachMuon", "QuanLyMuonTraSach");
             } 
 
@@ -205,7 +205,7 @@ namespace QuanLyThuVien.Controllers
 
             if (sach == null || model.MaSach <= 0)
             {
-                TempData["error"] = "Vui lòng chọn sách !";
+                TempData["error"] = "Please select book !";
                 return View("CreatePhieuMuon", model);
             } 
 
@@ -213,13 +213,13 @@ namespace QuanLyThuVien.Controllers
             bool isSoLuongSach = sach.SoLuong - model.SoLuongMuon < 0 ? true : false;
 
             if (theThuVien == null)
-                ModelState.AddModelError("MaTheThuVien", "Mã thẻ thư viện không tồn tại!");
+                ModelState.AddModelError("MaTheThuVien", "Library card not existed!");
             if (sach == null)
-                ModelState.AddModelError("MaSach", "Mã sách không tồn tại!");
+                ModelState.AddModelError("MaSach", "Book not existed!");
             if (model.SoLuongMuon <= 0)
-                ModelState.AddModelError("SoLuongMuon", "Số lượng mượn phải lớn hơn 0");
+                ModelState.AddModelError("SoLuongMuon", "The borrowing quantity must be greater than 0!");
              if (isSoLuongSach)
-                ModelState.AddModelError("SoLuongMuon", "Số lượng sách trong kho không đủ!");
+                ModelState.AddModelError("SoLuongMuon", "The number of books in stock is insufficient!");
 
             if (theThuVien != null && sach != null && !isSoLuongSach && model.SoLuongMuon > 0)
             {
@@ -237,7 +237,7 @@ namespace QuanLyThuVien.Controllers
 
                     if (maThuThu <= 0)
                     {
-                        TempData["error"] = "Tài khoản đăng nhập không phải thủ thư !";
+                        TempData["error"] = "Only librarian can use this feature !";
                         return View("CreatePhieuMuon", model);
                     } 
 
@@ -250,7 +250,7 @@ namespace QuanLyThuVien.Controllers
                     pm.HinhThucMuon = model.HinhThucMuon;
 
                     if (string.IsNullOrEmpty(model.GhiChuMuon))
-                        pm.GhiChuMuon = "Trống";
+                        pm.GhiChuMuon = "Empty";
                     else
                         pm.GhiChuMuon = model.GhiChuMuon;
 
@@ -263,7 +263,7 @@ namespace QuanLyThuVien.Controllers
                     int maPM = _db.PhieuMuons.Max(id => id.ID_PhieuMuon);
                     ctpm.ID_PhieuMuon = maPM;
                     ctpm.ID_Sach = model.MaSach;
-                    ctpm.GhiChuTra = "Trống";
+                    ctpm.GhiChuTra = "Empty";
                     // Trạng thái: 0 -> đang mượn, 1 -> đã trả
                     ctpm.TrangThai = 0;
                     ctpm.SoLuongMuon = 1; // Fix cứng số lượng 1 là 1
@@ -273,7 +273,7 @@ namespace QuanLyThuVien.Controllers
                     // Sửa lại số lượng sách khi lập phiếu mượn
                     await UpdateSach(model.MaSach, 1); // Trừ đi 1 cuốn sau mỗi lần mượn
 
-                    TempData["success"] = "Lập phiếu mượn thành công";
+                    TempData["success"] = "Borrow record created successfully!";
                     return RedirectToAction("ViewSachMuon");
                 } 
                 catch(Exception ex)
@@ -333,7 +333,7 @@ namespace QuanLyThuVien.Controllers
 
             if (vaiTro.ToLower() != "thủ thư")
             {
-                TempData["error"] = "Bạn phải có quyền thủ thư để thực hiện chức năng này !";
+                TempData["error"] = "Only librarian can use this feature !";
                 return RedirectToAction("ViewSachMuon", "QuanLyMuonTraSach");
             }
 
@@ -384,22 +384,22 @@ namespace QuanLyThuVien.Controllers
                  .Select(x => new SelectListItem(string.Format("{0} - {1}", x.MaSV, x.TenDocGia), x.MaTheThuVien))
                  .ToList();
 
-            docGias.Insert(0, new SelectListItem("-- Chọn độc giả --", "-1"));
+            docGias.Insert(0, new SelectListItem("-- Select patron --", "-1"));
             ViewBag.DocGias = docGias;
 
             List<SelectListItem> sachs = _db.Saches
                .Select(x => new SelectListItem(string.Format("{0}", x.TenSach), x.ID_Sach.ToString()))
                .ToList();
-            sachs.Insert(0, new SelectListItem("-- Chọn sách --", "-1"));
+            sachs.Insert(0, new SelectListItem("-- Select book --", "-1"));
 
             ViewBag.Sachs = sachs;
 
             List<SelectListItem> hinhThucMuons =
                new List<SelectListItem>()
                {
-                    new SelectListItem("-- Chọn hình thức --", ""),
-                    new SelectListItem("Mượn không tính phí", "1"),
-                    new SelectListItem("Mượn có tính phí ngày", "2")
+                    new SelectListItem("-- Select borrow type --", ""),
+                    new SelectListItem("Free borrow", "1"),
+                    new SelectListItem("Paid borrow", "2")
                };
 
             ViewBag.HinhThucMuons = hinhThucMuons;
@@ -424,22 +424,22 @@ namespace QuanLyThuVien.Controllers
                 .Select(x => new SelectListItem(string.Format("{0} - {1}", x.MaSV, x.TenDocGia), x.MaTheThuVien))
                 .ToList();
 
-            docGias.Insert(0, new SelectListItem("-- Chọn độc giả --", "-1"));
+            docGias.Insert(0, new SelectListItem("-- Select patron --", "-1"));
             ViewBag.DocGias = docGias;
 
             List<SelectListItem> sachs = _db.Saches
                .Select(x => new SelectListItem(string.Format("{0}", x.TenSach), x.ID_Sach.ToString()))
                .ToList();
-            sachs.Insert(0, new SelectListItem("-- Chọn sách --", "-1"));
+            sachs.Insert(0, new SelectListItem("-- Select book --", "-1"));
 
             ViewBag.Sachs = sachs;
 
             List<SelectListItem> hinhThucMuons =
                new List<SelectListItem>()
                {
-                    new SelectListItem("-- Chọn hình thức --", ""),
-                    new SelectListItem("Mượn không tính phí", "1"),
-                    new SelectListItem("Mượn có tính phí ngày", "2")
+                    new SelectListItem("-- Select borrow type --", ""),
+                    new SelectListItem("Free borrow", "1"),
+                    new SelectListItem("Paid borrow", "2")
                };
 
             ViewBag.HinhThucMuons = hinhThucMuons;
@@ -462,13 +462,13 @@ namespace QuanLyThuVien.Controllers
             bool isSoLuongSach = sach.SoLuong - model.SoLuongMuon + soLuongOld < 0 ? true : false;
 
             if (theThuVien == null)
-                ModelState.AddModelError("MaTheThuVien", "Mã thẻ thư viện không tồn tại!");
+                ModelState.AddModelError("MaTheThuVien", "Library card not existed!");
             if (sach == null)
-                ModelState.AddModelError("MaSach", "Mã sách không tồn tại!");
+                ModelState.AddModelError("MaSach", "Book not existed!");
             if (model.SoLuongMuon <= 0)
-                ModelState.AddModelError("SoLuongMuon", "Số lượng mượn phải lớn hơn 0");
+                ModelState.AddModelError("SoLuongMuon", "The borrowing quantity must be greater than 0!");
             if (isSoLuongSach)
-                ModelState.AddModelError("SoLuongMuon", "Số lượng sách trong kho không đủ!");
+                ModelState.AddModelError("SoLuongMuon", "The number of books in stock is insufficient!");
 
             if (theThuVien != null && sach != null && !isSoLuongSach && model.SoLuongMuon > 0)
             {
@@ -486,7 +486,7 @@ namespace QuanLyThuVien.Controllers
 
                     if (maThuThu <= 0)
                     {
-                        TempData["error"] = "Chức năng này chỉ được thực hiện bằng quyền của thủ thư !";
+                        TempData["error"] = "Only librarian can use this feature ! ";
                         return View("CreatePhieuMuon", model);
                     }
 
@@ -496,7 +496,7 @@ namespace QuanLyThuVien.Controllers
                     
                     if (pm == null)
                     {
-                        TempData["error"] = "Không tìm thấy phiếu mượn cần sửa !";
+                        TempData["error"] = "Cannot found borrow record";
                         return View("CreatePhieuMuon", model);
                     }
                     
@@ -506,7 +506,7 @@ namespace QuanLyThuVien.Controllers
                     pm.ID_The = model.MaTheThuVien;
                     pm.HinhThucMuon = model.HinhThucMuon;
                     if (string.IsNullOrEmpty(model.GhiChuMuon))
-                        pm.GhiChuMuon = "Trống";
+                        pm.GhiChuMuon = "Empty";
                     else
                         pm.GhiChuMuon = model.GhiChuMuon;
 
@@ -517,7 +517,7 @@ namespace QuanLyThuVien.Controllers
                     CTPhieuMuon ctpm = new CTPhieuMuon();
                     ctpm.ID_PhieuMuon = model.MaPhieuMuon;
                     ctpm.ID_Sach = model.MaSach;
-                    ctpm.GhiChuTra = "Trống";
+                    ctpm.GhiChuTra = "Empty";
                     // Trạng thái: 0 -> đang mượn, 1 -> đã trả
                     ctpm.TrangThai = 0;
                     ctpm.SoLuongMuon = model.SoLuongMuon;
@@ -527,7 +527,7 @@ namespace QuanLyThuVien.Controllers
                     // Sửa lại số lượng sách khi sửa phiếu mượn
                     await UpdateSach(model.MaSach, soLuongOld, model.SoLuongMuon);
 
-                    TempData["success"] = "Sửa phiếu mượn thành công";
+                    TempData["success"] = "Borrowing record updated successfully.";
                     return RedirectToAction("ViewSachMuon");
                 }
                 catch (Exception ex)
@@ -558,23 +558,23 @@ namespace QuanLyThuVien.Controllers
                 .Select(x => new SelectListItem(string.Format("{0} - {1}", x.MaSV, x.TenDocGia), x.MaTheThuVien))
                 .ToList();
 
-            docGias.Insert(0, new SelectListItem("-- Chọn độc giả --", ""));
+            docGias.Insert(0, new SelectListItem("-- Select patron --", ""));
             ViewBag.DocGias = docGias;
 
             List<SelectListItem> sachs = _db.Saches
                .Where(x => x.SoLuong > 0) // Lấy ra sách có số lượng 
                .Select(x => new SelectListItem(string.Format("{0}", x.TenSach), x.ID_Sach.ToString()))
                .ToList();
-            sachs.Insert(0, new SelectListItem("-- Chọn sách --", ""));
+            sachs.Insert(0, new SelectListItem("-- Select book --", ""));
 
             ViewBag.Sachs = sachs;
 
             List<SelectListItem> hinhThucMuons =
                new List<SelectListItem>()
                {
-                    new SelectListItem("-- Chọn hình thức --", ""),
-                    new SelectListItem("Mượn không tính phí", "1"),
-                    new SelectListItem("Mượn có tính phí ngày", "2")
+                    new SelectListItem("-- Select borrow type --", ""),
+                    new SelectListItem("Free borrow", "1"),
+                    new SelectListItem("Paid borrow", "2")
                };
 
             ViewBag.HinhThucMuons = hinhThucMuons;
@@ -639,7 +639,7 @@ namespace QuanLyThuVien.Controllers
 
                         await UpdateSachWhenDelete(ctpm.ID_Sach, ctpm.SoLuongMuon);
 
-                        TempData["success"] = "Xóa phiếu mượn thành công";
+                        TempData["success"] = "Borrowing record deleted successfully.";
                         return RedirectToAction("ViewSachMuon");
                     }
                 }
@@ -669,7 +669,7 @@ namespace QuanLyThuVien.Controllers
             int maSach = _db.CTPhieuMuon.First(e => e.ID_PhieuMuon == id).ID_Sach;
             await UpdateSlSachKhiTra(maSach, ctpm.SoLuongMuon);
 
-            TempData["success"] = "Xác nhận trả sách thành công";
+            TempData["success"] = "Book return confirmed successfully!";
             return RedirectToAction("ViewSachMuon");
         }
 

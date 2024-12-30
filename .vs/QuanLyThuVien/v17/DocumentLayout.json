@@ -1,71 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\phung\\Desktop\\LibMSv2\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|c:\\users\\phung\\desktop\\libmsv2\\quanlythuvien\\controllers\\quantrihethongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|solutionrelative:quanlythuvien\\controllers\\quantrihethongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|c:\\users\\phung\\desktop\\libmsv2\\quanlythuvien\\controllers\\quanlydocgiacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|solutionrelative:quanlythuvien\\controllers\\quanlydocgiacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|c:\\users\\phung\\desktop\\libmsv2\\quanlythuvien\\views\\quanlydocgia\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|solutionrelative:quanlythuvien\\views\\quanlydocgia\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\phung\\Desktop\\C#\\vnu_programming_3\\Final\\working\\code\\LibMSv2\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 220,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "QuanTriHeThongController.cs",
-              "DocumentMoniker": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\Controllers\\QuanTriHeThongController.cs",
-              "RelativeDocumentMoniker": "QuanLyThuVien\\Controllers\\QuanTriHeThongController.cs",
-              "ToolTip": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\Controllers\\QuanTriHeThongController.cs",
-              "RelativeToolTip": "QuanLyThuVien\\Controllers\\QuanTriHeThongController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T18:14:52.191Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "QuanLyDocGiaController.cs",
-              "DocumentMoniker": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\Controllers\\QuanLyDocGiaController.cs",
-              "RelativeDocumentMoniker": "QuanLyThuVien\\Controllers\\QuanLyDocGiaController.cs",
-              "ToolTip": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\Controllers\\QuanLyDocGiaController.cs",
-              "RelativeToolTip": "QuanLyThuVien\\Controllers\\QuanLyDocGiaController.cs",
-              "ViewState": "AgIAAMkAAAAAAAAAAAAkwNoAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T18:10:26.087Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\Views\\QuanLyDocGia\\Create.cshtml",
-              "RelativeDocumentMoniker": "QuanLyThuVien\\Views\\QuanLyDocGia\\Create.cshtml",
-              "ToolTip": "C:\\Users\\phung\\Desktop\\LibMSv2\\QuanLyThuVien\\Views\\QuanLyDocGia\\Create.cshtml",
-              "RelativeToolTip": "QuanLyThuVien\\Views\\QuanLyDocGia\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-26T18:10:10.908Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

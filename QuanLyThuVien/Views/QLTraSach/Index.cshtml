@@ -12,29 +12,29 @@
             <legend>Thông tin trả sách</legend>
             <div class="form-group d-flex align-items-end">
                 <div style="flex:auto; margin-right: 12px;">
-                    <label asp-for="IDSach" class="form-label mt-4">Mã sách <span class="text-danger">*</span></label>
-                    <input asp-for="IDSach" class="form-control flex" required placeholder="Mã sách" readonly />
+                    <label asp-for="IDSach" class="form-label mt-4">Book ID <span class="text-danger">*</span></label>
+                    <input asp-for="IDSach" class="form-control flex" required placeholder="Book ID" readonly />
                     <span asp-validation-for="IDSach" class="text-danger"></span>
                 </div>
                 <div style="flex:auto;">
-                    <label asp-for="TenSach" class="form-label mt-4">Tên sách <span class="text-danger">*</span></label>
-                    <input asp-for="TenSach" class="form-control" required placeholder="Tên sách" readonly />
+                    <label asp-for="TenSach" class="form-label mt-4">Book title <span class="text-danger">*</span></label>
+                    <input asp-for="TenSach" class="form-control" required placeholder="Book title" readonly />
                     <span asp-validation-for="TenSach" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group d-flex align-items-end">
                 <div style="flex:auto; margin-right: 12px;">
-                    <label asp-for="NgayTra" class="form-label mt-4">Ngày trả <span class="text-danger">*</span></label>
+                    <label asp-for="NgayTra" class="form-label mt-4">Return date <span class="text-danger">*</span></label>
                     <input asp-for="NgayTra" type="date" class="form-control" required />
                 </div>
                 <div style="flex:auto;">
-                    <label asp-for="TinhTrang" class="form-label mt-4">Tình Trạng sách <span class="text-danger">*</span></label>
+                    <label asp-for="TinhTrang" class="form-label mt-4">Status <span class="text-danger">*</span></label>
                     <select asp-for="TinhTrang" class="form-control" required>
-                        <option value="-1">-- Chọn --</option>
-                        <option value="1">Bình thường</option>
-                        <option value="2">Sách bị rách</option>
-                        <option value="3">Sách bị mất trang</option>
-                        <option value="4">Sách bị mất</option>
+                        <option value="-1">-- Select --</option>
+                        <option value="1">Normal</option>
+                        <option value="2">The book is torn</option>
+                        <option value="3">The book is missing pages</option>
+                        <option value="4">The book is lost</option>
                     </select>
                 </div>
             </div>
@@ -42,17 +42,17 @@
             {
                 <div class="form-group d-flex align-items-end">
                     <div style="flex:auto; margin-right: 12px;">
-                        <label class="form-label mt-4">Hình Thức Mượn <span class="text-danger">*</span></label>
-                        <input  class="form-control" readonly value="Mượn có tính phí ngày" required />
+                        <label class="form-label mt-4">Borrow type <span class="text-danger">*</span></label>
+                        <input  class="form-control" readonly value="Paid borrow" required />
                     </div>
                     <div style="flex:auto; ">
-                        <label class="form-label mt-4">Số ngày mượn <span class="text-danger">*</span></label>
+                        <label class="form-label mt-4">Borrow days <span class="text-danger">*</span></label>
                         <input class="form-control" readonly value="@Model.SoNgayMuon" required />
                     </div>
                 </div>
                 <div class="form-group d-flex align-items-end">
                     <div style="flex:auto; margin-right: 12px;">
-                        <label class="form-label mt-4">Tiền mượn phải trả <span class="text-danger">*</span></label>
+                        <label class="form-label mt-4">Fee <span class="text-danger">*</span></label>
                         <input class="form-control" readonly value="@Model.TienPhaiTra.ToString("#,###")" required />
                     </div>
                     <div style="flex:auto; ">
@@ -62,12 +62,12 @@
             }
             <div class="form-group d-flex align-items-end">
                 <div style="flex:auto; margin-right: 12px;">
-                    <label asp-for="MucDo" class="form-label mt-4">Mức độ hư hỏng <span class="text-danger"></span></label>
+                    <label asp-for="MucDo" class="form-label mt-4">Level of damage <span class="text-danger"></span></label>
                     <select asp-for="MucDo" class="form-control">
-                        <option value="-1">-- Chọn --</option>
-                        <option value="1">Ít</option>
-                        <option value="2">Trung bình</option>
-                        <option value="3">Nhiều</option>
+                        <option value="-1">-- Select --</option>
+                        <option value="1">Low</option>
+                        <option value="2">Average</option>
+                        <option value="3">High</option>
                     </select>
                 </div>
                 <div style="flex:auto;">
@@ -75,19 +75,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="SoLuongTra" class="form-label mt-4">Số lượng trả</label>
-                <input asp-for="SoLuongTra" type="number" class="form-control" required placeholder="Nhập số lượng trả" />
+                <label asp-for="SoLuongTra" class="form-label mt-4">Return quantity</label>
+                <input asp-for="SoLuongTra" type="number" class="form-control" required placeholder="Enter return quantity" />
                 <span asp-validation-for="SoLuongTra" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="GhiChuTra" class="form-label mt-4">Ghi chú</label>
-                <input asp-for="GhiChuTra" type="text" class="form-control" placeholder="Nhập ghi chú trả" />
+                <label asp-for="GhiChuTra" class="form-label mt-4">Note</label>
+                <input asp-for="GhiChuTra" type="text" class="form-control" placeholder="" />
             </div>
         </fieldset>
 
         <fieldset style="margin-top:25px">
-            <a asp-controller="QuanLyMuonTraSach" asp-action="ViewSachMuon" class="btn btn-outline-primary" style="margin-right: 4px">Quay lại</a>
-            <button type="submit" class="btn btn-success">Trả sách</button>
+            <a asp-controller="QuanLyMuonTraSach" asp-action="ViewSachMuon" class="btn btn-outline-primary" style="margin-right: 4px">Cancel</a>
+            <button type="submit" class="btn btn-success">Return</button>
         </fieldset>
     </form>
 </main>

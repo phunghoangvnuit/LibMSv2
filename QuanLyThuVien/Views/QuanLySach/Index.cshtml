@@ -4,30 +4,30 @@
 }
 
 <main>
-    <h2 class="lv2">Danh sách sách</h2>
+    <h2 class="lv2">List books</h2>
     <div class="text-start d-flex justify-content-between" style="margin: 12px 0;">
         <a asp-controller="QuanLySach" asp-action="Create" class="btn btn-outline-primary">
-            <i class="bi bi-plus-circle"></i>&nbsp; Tạo mới
+            <i class="bi bi-plus-circle"></i>&nbsp; Create
         </a>
         <form method="post" class="d-flex" asp-controller="QuanLySach" asp-action="SearchSach">
-            <input class="form-control me-sm-1" type="search" required name="searchInput" placeholder="Tìm theo tên, tác giả, thể loại ...">
+            <input class="form-control me-sm-1" type="search" required name="searchInput" placeholder="Search by name, author, category ...">
             <button class="btn btn-primary" type="submit">Search</button>
         </form>
     </div>
     <table class="table table-hover">
         <thead>
             <tr class="table-primary">
-                <th class="col">Hình Ảnh</th>
-                <th scope="col">Mã sách</th>
-                <th scope="col">Tên sách</th>
-                <th scope="col">Tác giả</th>
-                <th scope="col">Thể loại</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Giá sách</th>
-                <th scope="col">Giá thuê/ngày</th>
-                <th scope="col">Quốc gia</th>
-                <th scope="col">Ngày nhập</th>
-                <th scope="col">Hành động</th>
+                <th class="col">Image</th>
+                <th scope="col">Book ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Author</th>
+                <th scope="col">Category</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Borrow Fee</th>
+                <th scope="col">National</th>
+                <th scope="col">Created Date</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>

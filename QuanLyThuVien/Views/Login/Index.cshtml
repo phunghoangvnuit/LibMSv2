@@ -5,21 +5,24 @@
 }
 
 <div class="login">
-    <h2 class="text-primary">Đăng nhập</h2>
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+        <img style="width: 300px; margin-bottom: 10px" src="/Images/logo/4_Eng_golden_positive_text_Logo 6 copy 2.png" />
+        <h2 class="text-primary" style="font-weight: 600">Login</h2>
+    </div>
     <form method="post" asp-action="Login">
         <div class="form-group">
-            <label for="inputTenDN" class="form-label mt-4">Tên đăng nhập</label>
-            <input type="text" class="form-control" id="inputTenDN" name="taikhoan" required placeholder="Nhập tên đăng nhập">
+            <label for="inputTenDN" class="form-label mt-4">Username</label>
+            <input type="text" class="form-control" id="inputTenDN" name="taikhoan" required placeholder="Enter user name">
         </div>
         <div class="form-group">
-            <label for="inputMK" class="form-label mt-4">Mật khẩu</label>
-            <input type="password" class="form-control" id="inputMK" name="matkhau" required placeholder="Nhập mật khẩu" autocomplete="off">
+            <label for="inputMK" class="form-label mt-4">Password</label>
+            <input type="password" class="form-control" id="inputMK" name="matkhau" required placeholder="Enter password" autocomplete="off">
         </div>
         <br />
     
         <br />
         <div class="text-center">
-            <input type="submit" value="Log in" class="btn btn-primary w-100" />
+            <input type="submit" value="Login" class="btn btn-primary w-100" />
         </div>
     </form>
 </div>

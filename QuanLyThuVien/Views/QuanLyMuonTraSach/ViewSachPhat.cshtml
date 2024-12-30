@@ -3,35 +3,40 @@
     ViewData["Title"] = "Sách phạt";
 }
 
-<main>
+<main class="pt-2">
     <div>
         <div class="text-start d-flex" style="margin: 12px 0;">
             <a asp-controller="QuanLyMuonTraSach" asp-action="ViewSachMuon" class="btn btn-outline-primary @(Context.Request.Path == "/QuanLyMuonTraSach/ViewSachMuon" ? "active" : "")" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                Phiếu đang mượn
+                Borrowing Records
             </a>
             <a asp-controller="QuanLyMuonTraSach" asp-action="ViewSachTra" class="btn btn-outline-primary @(Context.Request.Path == "/QuanLyMuonTraSach/ViewSachTra" ? "active" : "")" style="border-top-left-radius: 0; border-bottom-left-radius: 0;border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                Phiếu đã trả
+                Returned Records
             </a>
             <a asp-controller="QuanLyMuonTraSach" asp-action="ViewSachPhat" class="btn btn-outline-primary @(Context.Request.Path == "/QuanLyMuonTraSach/ViewSachPhat" ? "active" : "")" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                Phiếu bị phạt
+                Fine Records
+            </a>
+        </div>
+        <div class="text-end">
+            <a asp-controller="QuanLyMuonTraSach" asp-action="CreatePhieuMuon" class="btn btn-success" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                Create
             </a>
         </div>
         <hr />
         <table class="table table-hover">
             <thead>
                 <tr class="table-primary">
-                    <th scope="col">Số phiếu</th>
-                    <th scope="col">Mã sách</th>
-                    <th scope="col">Tên sách</th>
-                    <th scope="col">Mã thẻ thư viện</th>
-                    <th scope="col">Tên độc giả</th>
-                    <th scope="col">Số lượng trả</th>
-                    <th scope="col">Ngày trả</th>
-                    <th scope="col">Tình Trạng</th>
-                    <th scope="col">Mức độ</th>
-                    <th scope="col">Tiền phạt</th>
-                    <th scope="col">Ghi chú phạt</th>
-                    <th scope="col">Ghi chú trả</th>
+                    <th scope="col">Record ID</th>
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Library Card</th>
+                    <th scope="col">Patron</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Returned Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Fee</th>
+                    <th scope="col">Fine Note</th>
+                    <th scope="col">Note</th>
                 </tr>
             </thead>
             <tbody>
