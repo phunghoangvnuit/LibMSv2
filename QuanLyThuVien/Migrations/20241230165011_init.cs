@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace QuanLyThuVien.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -80,30 +80,6 @@ namespace QuanLyThuVien.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ThuThus",
-                columns: table => new
-                {
-                    ID_ThuThu = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenThuThu = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GioiTinh = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SDT = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ID_TaiKhoan = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ThuThus", x => x.ID_ThuThu);
-                    table.ForeignKey(
-                        name: "FK_ThuThus_TaiKhoans_ID_TaiKhoan",
-                        column: x => x.ID_TaiKhoan,
-                        principalTable: "TaiKhoans",
-                        principalColumn: "ID_TaiKhoan",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Saches",
                 columns: table => new
                 {
@@ -113,6 +89,7 @@ namespace QuanLyThuVien.Migrations
                     GiaTien = table.Column<double>(type: "float", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
                     UrlImg = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GiaThueTheoNgay = table.Column<double>(type: "float", nullable: false),
                     NgayNhap = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ID_TheLoai = table.Column<int>(type: "int", nullable: false),
                     ID_TacGia = table.Column<int>(type: "int", nullable: false)
@@ -162,9 +139,10 @@ namespace QuanLyThuVien.Migrations
                 {
                     ID_PhieuMuon = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    HinhThucMuon = table.Column<int>(type: "int", nullable: false),
                     NgayTaoPhieu = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NgayHenTra = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ID_ThuThu = table.Column<int>(type: "int", nullable: true),
+                    ID_TaiKhoan = table.Column<int>(type: "int", nullable: true),
                     ID_The = table.Column<int>(type: "int", nullable: false),
                     GhiChuMuon = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -172,16 +150,16 @@ namespace QuanLyThuVien.Migrations
                 {
                     table.PrimaryKey("PK_PhieuMuons", x => x.ID_PhieuMuon);
                     table.ForeignKey(
+                        name: "FK_PhieuMuons_TaiKhoans_ID_TaiKhoan",
+                        column: x => x.ID_TaiKhoan,
+                        principalTable: "TaiKhoans",
+                        principalColumn: "ID_TaiKhoan");
+                    table.ForeignKey(
                         name: "FK_PhieuMuons_TheThuViens_ID_The",
                         column: x => x.ID_The,
                         principalTable: "TheThuViens",
                         principalColumn: "ID_The",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PhieuMuons_ThuThus_ID_ThuThu",
-                        column: x => x.ID_ThuThu,
-                        principalTable: "ThuThus",
-                        principalColumn: "ID_ThuThu");
                 });
 
             migrationBuilder.CreateTable(
@@ -190,6 +168,7 @@ namespace QuanLyThuVien.Migrations
                 {
                     ID_PhieuMuon = table.Column<int>(type: "int", nullable: false),
                     ID_Sach = table.Column<int>(type: "int", nullable: false),
+                    TongTienThue = table.Column<float>(type: "real", nullable: false),
                     TrangThai = table.Column<int>(type: "int", nullable: false),
                     SoLuongMuon = table.Column<int>(type: "int", nullable: false),
                     NgayTra = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -212,6 +191,40 @@ namespace QuanLyThuVien.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "LSTraSach",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID_PhieuMuon = table.Column<int>(type: "int", nullable: false),
+                    ID_Sach = table.Column<int>(type: "int", nullable: false),
+                    TrangThai = table.Column<int>(type: "int", nullable: false),
+                    MucDo = table.Column<int>(type: "int", nullable: true),
+                    SoLuongTra = table.Column<int>(type: "int", nullable: false),
+                    NgayTra = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    GhiChuTra = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SoTienPhat = table.Column<double>(type: "float", nullable: false),
+                    GhiChuPhat = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TongTienThue = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LSTraSach", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_LSTraSach_PhieuMuons_ID_PhieuMuon",
+                        column: x => x.ID_PhieuMuon,
+                        principalTable: "PhieuMuons",
+                        principalColumn: "ID_PhieuMuon",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LSTraSach_Saches_ID_Sach",
+                        column: x => x.ID_Sach,
+                        principalTable: "Saches",
+                        principalColumn: "ID_Sach",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CTPhieuMuon_ID_Sach",
                 table: "CTPhieuMuon",
@@ -228,14 +241,24 @@ namespace QuanLyThuVien.Migrations
                 column: "ID_TaiKhoan");
 
             migrationBuilder.CreateIndex(
+                name: "IX_LSTraSach_ID_PhieuMuon",
+                table: "LSTraSach",
+                column: "ID_PhieuMuon");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LSTraSach_ID_Sach",
+                table: "LSTraSach",
+                column: "ID_Sach");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhieuMuons_ID_TaiKhoan",
+                table: "PhieuMuons",
+                column: "ID_TaiKhoan");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PhieuMuons_ID_The",
                 table: "PhieuMuons",
                 column: "ID_The");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhieuMuons_ID_ThuThu",
-                table: "PhieuMuons",
-                column: "ID_ThuThu");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Saches_ID_TacGia",
@@ -263,17 +286,6 @@ namespace QuanLyThuVien.Migrations
                 name: "IX_TheThuViens_ID_DocGia",
                 table: "TheThuViens",
                 column: "ID_DocGia");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ThuThus_Email",
-                table: "ThuThus",
-                column: "Email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ThuThus_ID_TaiKhoan",
-                table: "ThuThus",
-                column: "ID_TaiKhoan");
         }
 
         /// <inheritdoc />
@@ -283,6 +295,9 @@ namespace QuanLyThuVien.Migrations
                 name: "CTPhieuMuon");
 
             migrationBuilder.DropTable(
+                name: "LSTraSach");
+
+            migrationBuilder.DropTable(
                 name: "PhieuMuons");
 
             migrationBuilder.DropTable(
@@ -290,9 +305,6 @@ namespace QuanLyThuVien.Migrations
 
             migrationBuilder.DropTable(
                 name: "TheThuViens");
-
-            migrationBuilder.DropTable(
-                name: "ThuThus");
 
             migrationBuilder.DropTable(
                 name: "TacGias");

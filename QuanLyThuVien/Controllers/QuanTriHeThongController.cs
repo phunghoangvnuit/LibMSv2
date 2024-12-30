@@ -13,7 +13,7 @@ namespace QuanLyThuVien.Controllers
             _db = db;
         }
 
-        // GET
+        // GET (Display toàn bộ tài khoản có trong database)
         public IActionResult Index()
         {
             if(vaiTro == "Admin")
@@ -45,7 +45,7 @@ namespace QuanLyThuVien.Controllers
 
             if(pass != confirm)
             {
-                ModelState.AddModelError("MatKhau", "Confrim password not matched !");
+                ModelState.AddModelError("MatKhau", "Confirm password not matched !");
             } else
             {
                 try
@@ -84,7 +84,7 @@ namespace QuanLyThuVien.Controllers
             string confirm = confirmPassword;
             if (pass != confirm)
             {
-                ModelState.AddModelError("MatKhau", "Confrim password not matched !");
+                ModelState.AddModelError("MatKhau", "Confirm password not matched !");
             }
             else
             {
@@ -128,7 +128,7 @@ namespace QuanLyThuVien.Controllers
                 if (obj == null) { return NotFound(); }
                 _db.TaiKhoans.Remove(obj);
                 await _db.SaveChangesAsync();
-                TempData["success"] = "Successfully delete !";
+                TempData["success"] = "Successfully deleted !";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

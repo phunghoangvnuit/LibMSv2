@@ -10,7 +10,6 @@ namespace QuanLyThuVien.Models
         private string _MatKhau;
         private string _VaiTro;
         private ICollection<DocGia> _DocGias;
-        private ICollection<ThuThu> _ThuThus;
 
         [Key]
         public int ID_TaiKhoan { get => _ID_TaiKhoan; set => _ID_TaiKhoan = value; }
@@ -22,6 +21,5 @@ namespace QuanLyThuVien.Models
         public string MatKhau { get => _MatKhau; set => _MatKhau = value; }
         public string VaiTro { get => _VaiTro; set => _VaiTro = value; }
         public ICollection<DocGia> DocGias { get => _DocGias; set => _DocGias = value; }
-        public ICollection<ThuThu> ThuThus { get => _ThuThus; set => _ThuThus = value; }
     }
 }

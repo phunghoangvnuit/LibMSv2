@@ -11,8 +11,8 @@ namespace QuanLyThuVien.Models
         private string _GhiChuMuon;
         public int HinhThucMuon { get; set; }
 
-        private int? _ID_ThuThu;
-        private ThuThu _ThuThu;
+        private int? _ID_TaiKhoan;
+        private TaiKhoan _TaiKhoan;
 
         private int _ID_The;
         private TheThuVien _TheThuVien;
@@ -24,9 +24,9 @@ namespace QuanLyThuVien.Models
         public DateTime NgayTaoPhieu { get => _NgayTaoPhieu; set => _NgayTaoPhieu = DateTime.Now; }
         public DateTime NgayHenTra { get => _NgayHenTra; set => _NgayHenTra = value; }
 
-        public int? ID_ThuThu { get => _ID_ThuThu; set => _ID_ThuThu = value; }
-        [ForeignKey("ID_ThuThu")]
-        public ThuThu ThuThu { get => _ThuThu; set => _ThuThu = value; }
+        public int? ID_TaiKhoan { get => _ID_TaiKhoan; set => _ID_TaiKhoan = value; }
+        [ForeignKey("ID_TaiKhoan")]
+        public TaiKhoan TaiKhoan { get => _TaiKhoan; set => _TaiKhoan = value; }
 
         public int ID_The { get => _ID_The; set => _ID_The = value; }
         [ForeignKey("ID_The")]

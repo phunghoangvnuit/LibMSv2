@@ -21,19 +21,19 @@ namespace QuanLyThuVien.Controllers
         public IActionResult ViewSachMuon(string filter = null)
         {
             LinkedList<SachMuon> lstPhieuMuon = new LinkedList<SachMuon>();
-            var dataPhieuMuons = from tt in _db.ThuThus
+            var dataPhieuMuons = from tk in _db.TaiKhoans
                                 from pm in _db.PhieuMuons
                                 from ctpm in _db.CTPhieuMuon
                                 from dg in _db.DocGias
                                 from s in _db.Saches
                                 from ttv in _db.TheThuViens
                                 where (pm.ID_PhieuMuon == ctpm.ID_PhieuMuon && pm.ID_The == ttv.ID_The
-                                      && pm.ID_ThuThu == tt.ID_ThuThu && ttv.ID_DocGia == dg.ID_DocGia 
+                                      && pm.ID_TaiKhoan == tk.ID_TaiKhoan && ttv.ID_DocGia == dg.ID_DocGia 
                                       && ctpm.ID_Sach == s.ID_Sach && ctpm.TrangThai == 0)
                                 select new
                                 {
                                     MaPM = pm.ID_PhieuMuon,
-                                    TenNguoiTao = tt.TenThuThu,
+                                    TenNguoiTao = tk.TenDangNhap,
                                     MaTheTV = ttv.ID_The,
                                     MaSV = dg.MaSV,
                                     TenDg = dg.TenDocGia,
@@ -226,16 +226,11 @@ namespace QuanLyThuVien.Controllers
                 try
                 {
                     // Lấy mã thủ thư
-                    var thuthu = from tt in _db.ThuThus
-                                 where tt.ID_TaiKhoan == idDN
-                                 select tt;
-                    int maThuThu = 0;
-                    foreach (var tt in thuthu)
-                    {
-                        maThuThu = tt.ID_ThuThu;
-                    }
+                    var thuthu = (from tk in _db.TaiKhoans
+                                  where tk.ID_TaiKhoan == idDN && tk.VaiTro == "Librarian"
+                                  select tk).FirstOrDefault(); ;
 
-                    if (maThuThu <= 0)
+                    if (thuthu?.VaiTro != "Librarian")
                     {
                         TempData["error"] = "Only librarian can use this feature !";
                         return View("CreatePhieuMuon", model);
@@ -245,7 +240,7 @@ namespace QuanLyThuVien.Controllers
                     PhieuMuon pm = new PhieuMuon();
                     pm.NgayTaoPhieu = model.NgayTaoPhieu;
                     pm.NgayHenTra = model.NgayHenTra;
-                    pm.ID_ThuThu = maThuThu;
+                    pm.ID_TaiKhoan = thuthu.ID_TaiKhoan;
                     pm.ID_The = model.MaTheThuVien;
                     pm.HinhThucMuon = model.HinhThucMuon;
 
@@ -337,19 +332,19 @@ namespace QuanLyThuVien.Controllers
                 return RedirectToAction("ViewSachMuon", "QuanLyMuonTraSach");
             }
 
-            var data = from tt in _db.ThuThus
+            var data = from tk in _db.TaiKhoans
                       from pm in _db.PhieuMuons
                       from ctpm in _db.CTPhieuMuon
                       from dg in _db.DocGias
                       from s in _db.Saches
                       from ttv in _db.TheThuViens
                       where (pm.ID_PhieuMuon == ctpm.ID_PhieuMuon && pm.ID_The == ttv.ID_The
-                            && pm.ID_ThuThu == tt.ID_ThuThu && ttv.ID_DocGia == dg.ID_DocGia
+                            && pm.ID_TaiKhoan == tk.ID_TaiKhoan && ttv.ID_DocGia == dg.ID_DocGia
                             && ctpm.ID_Sach == s.ID_Sach && pm.ID_PhieuMuon == id)
                       select new
                       {
                           MaPM = pm.ID_PhieuMuon,
-                          TenNguoiTao = tt.TenThuThu,
+                          TenNguoiTao = tk.TenDangNhap,
                           MaTheTV = ttv.ID_The,
                           TenDg = dg.TenDocGia,
                           MaSach = s.ID_Sach,
@@ -475,18 +470,13 @@ namespace QuanLyThuVien.Controllers
                 try
                 {
                     // Lấy mã thủ thư
-                    var thuthu = from tt in _db.ThuThus
-                                 where tt.ID_TaiKhoan == idDN
-                                 select tt;
-                    int maThuThu = 0;
-                    foreach (var tt in thuthu)
-                    {
-                        maThuThu = tt.ID_ThuThu;
-                    }
+                    var thuthu = (from tk in _db.TaiKhoans
+                                  where tk.ID_TaiKhoan == idDN && tk.VaiTro == "Librarian"
+                                  select tk).FirstOrDefault(); ;
 
-                    if (maThuThu <= 0)
+                    if (thuthu?.VaiTro != "Librarian")
                     {
-                        TempData["error"] = "Only librarian can use this feature ! ";
+                        TempData["error"] = "Only librarian can use this feature !";
                         return View("CreatePhieuMuon", model);
                     }
 
@@ -502,7 +492,7 @@ namespace QuanLyThuVien.Controllers
                     
                     pm.NgayTaoPhieu = model.NgayTaoPhieu;
                     pm.NgayHenTra = model.NgayHenTra;
-                    pm.ID_ThuThu = maThuThu;
+                    pm.ID_TaiKhoan = thuthu.ID_TaiKhoan;
                     pm.ID_The = model.MaTheThuVien;
                     pm.HinhThucMuon = model.HinhThucMuon;
                     if (string.IsNullOrEmpty(model.GhiChuMuon))
@@ -579,19 +569,19 @@ namespace QuanLyThuVien.Controllers
 
             ViewBag.HinhThucMuons = hinhThucMuons;
 
-            var data = from tt in _db.ThuThus
+            var data = from tk in _db.TaiKhoans
                        from pm in _db.PhieuMuons
                        from ctpm in _db.CTPhieuMuon
                        from dg in _db.DocGias
                        from s in _db.Saches
                        from ttv in _db.TheThuViens
                        where (pm.ID_PhieuMuon == ctpm.ID_PhieuMuon && pm.ID_The == ttv.ID_The
-                             && pm.ID_ThuThu == tt.ID_ThuThu && ttv.ID_DocGia == dg.ID_DocGia
+                             && pm.ID_TaiKhoan == tk.ID_TaiKhoan && ttv.ID_DocGia == dg.ID_DocGia
                              && ctpm.ID_Sach == s.ID_Sach && pm.ID_PhieuMuon == id)
                        select new
                        {
                            MaPM = pm.ID_PhieuMuon,
-                           TenNguoiTao = tt.TenThuThu,
+                           TenNguoiTao = tk.TenDangNhap,
                            MaTheTV = ttv.ID_The,
                            TenDg = dg.TenDocGia,
                            MaSach = s.ID_Sach,

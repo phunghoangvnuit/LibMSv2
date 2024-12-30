@@ -31,14 +31,14 @@ namespace QuanLyThuVien.Controllers
                 return RedirectToAction("ViewSachMuon", "QuanLyMuonTraSach");
             }
 
-            var data = from tt in _db.ThuThus
+            var data = from tt in _db.TaiKhoans
                        from pm in _db.PhieuMuons
                        from ctpm in _db.CTPhieuMuon
                        from dg in _db.DocGias
                        from s in _db.Saches
                        from ttv in _db.TheThuViens
                        where (pm.ID_PhieuMuon == ctpm.ID_PhieuMuon && pm.ID_The == ttv.ID_The
-                             && pm.ID_ThuThu == tt.ID_ThuThu && ttv.ID_DocGia == dg.ID_DocGia
+                             && pm.ID_TaiKhoan == tt.ID_TaiKhoan && ttv.ID_DocGia == dg.ID_DocGia
                              && ctpm.ID_Sach == s.ID_Sach && pm.ID_PhieuMuon == id)
                        select new SachTraVM
                        {

@@ -12,8 +12,8 @@ using QuanLyThuVien.Data;
 namespace QuanLyThuVien.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240716070507_SuaHinhThucMuon")]
-    partial class SuaHinhThucMuon
+    [Migration("20241230165011_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -167,10 +167,10 @@ namespace QuanLyThuVien.Migrations
                     b.Property<int>("HinhThucMuon")
                         .HasColumnType("int");
 
-                    b.Property<int>("ID_The")
+                    b.Property<int?>("ID_TaiKhoan")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ID_ThuThu")
+                    b.Property<int>("ID_The")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("NgayHenTra")
@@ -181,9 +181,9 @@ namespace QuanLyThuVien.Migrations
 
                     b.HasKey("ID_PhieuMuon");
 
-                    b.HasIndex("ID_The");
+                    b.HasIndex("ID_TaiKhoan");
 
-                    b.HasIndex("ID_ThuThu");
+                    b.HasIndex("ID_The");
 
                     b.ToTable("PhieuMuons");
                 });
@@ -328,46 +328,6 @@ namespace QuanLyThuVien.Migrations
                     b.ToTable("TheThuViens");
                 });
 
-            modelBuilder.Entity("QuanLyThuVien.Models.ThuThu", b =>
-                {
-                    b.Property<int>("ID_ThuThu")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_ThuThu"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("GioiTinh")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ID_TaiKhoan")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("NgaySinh")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SDT")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenThuThu")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID_ThuThu");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("ID_TaiKhoan");
-
-                    b.ToTable("ThuThus");
-                });
-
             modelBuilder.Entity("QuanLyThuVien.Models.CTPhieuMuon", b =>
                 {
                     b.HasOne("QuanLyThuVien.Models.PhieuMuon", "PhieuMuon")
@@ -419,19 +379,19 @@ namespace QuanLyThuVien.Migrations
 
             modelBuilder.Entity("QuanLyThuVien.Models.PhieuMuon", b =>
                 {
+                    b.HasOne("QuanLyThuVien.Models.TaiKhoan", "TaiKhoan")
+                        .WithMany()
+                        .HasForeignKey("ID_TaiKhoan");
+
                     b.HasOne("QuanLyThuVien.Models.TheThuVien", "TheThuVien")
                         .WithMany("PhieuMuon")
                         .HasForeignKey("ID_The")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("QuanLyThuVien.Models.ThuThu", "ThuThu")
-                        .WithMany("PhieuMuon")
-                        .HasForeignKey("ID_ThuThu");
+                    b.Navigation("TaiKhoan");
 
                     b.Navigation("TheThuVien");
-
-                    b.Navigation("ThuThu");
                 });
 
             modelBuilder.Entity("QuanLyThuVien.Models.Sach", b =>
@@ -464,17 +424,6 @@ namespace QuanLyThuVien.Migrations
                     b.Navigation("DocGia");
                 });
 
-            modelBuilder.Entity("QuanLyThuVien.Models.ThuThu", b =>
-                {
-                    b.HasOne("QuanLyThuVien.Models.TaiKhoan", "TaiKhoan")
-                        .WithMany("ThuThus")
-                        .HasForeignKey("ID_TaiKhoan")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TaiKhoan");
-                });
-
             modelBuilder.Entity("QuanLyThuVien.Models.DocGia", b =>
                 {
                     b.Navigation("TheThuViens");
@@ -498,8 +447,6 @@ namespace QuanLyThuVien.Migrations
             modelBuilder.Entity("QuanLyThuVien.Models.TaiKhoan", b =>
                 {
                     b.Navigation("DocGias");
-
-                    b.Navigation("ThuThus");
                 });
 
             modelBuilder.Entity("QuanLyThuVien.Models.TheLoai", b =>
@@ -508,11 +455,6 @@ namespace QuanLyThuVien.Migrations
                 });
 
             modelBuilder.Entity("QuanLyThuVien.Models.TheThuVien", b =>
-                {
-                    b.Navigation("PhieuMuon");
-                });
-
-            modelBuilder.Entity("QuanLyThuVien.Models.ThuThu", b =>
                 {
                     b.Navigation("PhieuMuon");
                 });

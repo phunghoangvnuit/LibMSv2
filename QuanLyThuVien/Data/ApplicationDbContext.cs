@@ -15,7 +15,6 @@ namespace QuanLyThuVien.Data
         public DbSet<TacGia> TacGias { get; set; }
         public DbSet<Sach> Saches { get; set; }
         public DbSet<TaiKhoan> TaiKhoans { get; set; }
-        public DbSet<ThuThu> ThuThus { get; set; }
         public DbSet<TheThuVien> TheThuViens { get; set; }
         public DbSet<DocGia> DocGias { get; set; }
         public DbSet<PhieuMuon> PhieuMuons { get; set; }
@@ -33,11 +32,6 @@ namespace QuanLyThuVien.Data
             builders.Entity<TheLoai>(entity =>
             {
                 entity.HasIndex(e => e.TenTheLoai).IsUnique();
-            });
-            // Unique Table ThuThu
-            builders.Entity<ThuThu>(entity =>
-            {
-                entity.HasIndex(e => e.Email).IsUnique();
             });
             // Unique Table DocGia
             builders.Entity<DocGia>(entity =>
