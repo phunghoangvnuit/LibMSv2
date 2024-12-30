@@ -21,11 +21,11 @@ namespace QuanLyThuVien.Controllers
                 IQueryable<TaiKhoan> dataTaiKhoan = getDataTaiKhoan();
                 if (dataTaiKhoan.Count() <= 0)
                 {
-                    TempData["message"] = "Dữ liệu trống";
+                    TempData["message"] = "Empty";
                 }
                 return View(dataTaiKhoan);
             }
-            TempData["message"] = "Bạn không có quyền truy cập vào chức năng này!!!";
+            TempData["message"] = "Only admin can access this section !";
             return RedirectToAction("Index", "Home");
         }
 
@@ -45,14 +45,14 @@ namespace QuanLyThuVien.Controllers
 
             if(pass != confirm)
             {
-                ModelState.AddModelError("MatKhau", "Mật khẩu xác nhận không đúng");
+                ModelState.AddModelError("MatKhau", "Confrim password not matched !");
             } else
             {
                 try
                 {
                     _db.TaiKhoans.Add(obj);
                     await _db.SaveChangesAsync();
-                    TempData["success"] = "Thêm tài khoản thành công";
+                    TempData["success"] = "Successfully created !";
                     return RedirectToAction("Index");
                 } catch (Exception ex)
                 {
@@ -84,7 +84,7 @@ namespace QuanLyThuVien.Controllers
             string confirm = confirmPassword;
             if (pass != confirm)
             {
-                ModelState.AddModelError("MatKhau", "Mật khẩu xác nhận không đúng");
+                ModelState.AddModelError("MatKhau", "Confrim password not matched !");
             }
             else
             {
@@ -92,7 +92,7 @@ namespace QuanLyThuVien.Controllers
                 {
                     _db.TaiKhoans.UpdateRange(obj);
                     await _db.SaveChangesAsync();
-                    TempData["success"] = "Sửa thông tin tài khoản thành công";
+                    TempData["success"] = "Successfully updated !";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -128,7 +128,7 @@ namespace QuanLyThuVien.Controllers
                 if (obj == null) { return NotFound(); }
                 _db.TaiKhoans.Remove(obj);
                 await _db.SaveChangesAsync();
-                TempData["success"] = "Xóa thông tin tài khoản thành công";
+                TempData["success"] = "Successfully delete !";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -143,7 +143,7 @@ namespace QuanLyThuVien.Controllers
         public IQueryable<TaiKhoan> getDataTaiKhoan()
         {
             var obj = from tk in _db.TaiKhoans
-                      where tk.VaiTro != "Admin"
+                      where tk.VaiTro != "Patron"
                       select tk;
             return obj;
         }

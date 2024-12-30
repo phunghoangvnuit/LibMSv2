@@ -25,9 +25,9 @@ namespace QuanLyThuVien.Controllers
             if (id == null)
                 return NotFound();
 
-            if (vaiTro.ToLower() != "thủ thư")
+            if (vaiTro.ToLower() != "librarian")
             {
-                TempData["error"] = "Bạn phải có quyền thủ thư để thực hiện chức năng này !";
+                TempData["error"] = "Only librarian can use this feature !";
                 return RedirectToAction("ViewSachMuon", "QuanLyMuonTraSach");
             }
 
@@ -69,7 +69,7 @@ namespace QuanLyThuVien.Controllers
             int soLuongSachConLai = ct.SoLuongMuon - soSachDaTra;
 
             obj.SoLuongTra = soLuongSachConLai;
-            obj.GhiChuTra = obj.NgayTra.Value.Date < DateTime.Now.Date ? "Trả sách muộn" : "";
+            obj.GhiChuTra = obj.NgayTra.Value.Date < DateTime.Now.Date ? "Late return" : "";
             obj.NgayTra = DateTime.Now;
             obj.SoNgayMuon = (int) (obj.NgayTra.Value - obj.NgayMuon.Value).TotalDays + 1;
             obj.TienPhaiTra = obj.GiaThueTheoNgay * obj.SoNgayMuon;
@@ -93,7 +93,7 @@ namespace QuanLyThuVien.Controllers
 
                 if (obj.TinhTrang <= 0)
                 {
-                    TempData["error"] = "Vui lòng chọn tình trạng trả sách !";
+                    TempData["error"] = "Please select status !";
                     return RedirectToAction("Index", "QLTraSach", new { id = obj.IDPhieuMuon });
                 }
                 // Select dữ liệu bảng chi tiết phiếu mượn qua mã phiếu mượn
@@ -107,7 +107,7 @@ namespace QuanLyThuVien.Controllers
 
                 if (ctpm == null)
                 {
-                    TempData["error"] = "Không tìm thấy chi tiết mượn !";
+                    TempData["error"] = "Cannot find the record details !";
                     return RedirectToAction("Index", "QLTraSach", new { id = obj.IDPhieuMuon });
                 }
 
@@ -115,7 +115,7 @@ namespace QuanLyThuVien.Controllers
 
                 if (obj.SoLuongTra <= 0 || obj.SoLuongTra > soLuongSachConLai)
                 {
-                    TempData["error"] = "Số lượng sách trả không hợp lệ ! Bạn chỉ có thể trả " + soLuongSachConLai + " cuốn sách đã mượn !";
+                    TempData["error"] = "Your return quantity is invalid ! You only can return " + soLuongSachConLai + " book(s) you borrowed !";
                     return RedirectToAction("Index", "QLTraSach", new { id = obj.IDPhieuMuon });
                 }
 
@@ -123,7 +123,7 @@ namespace QuanLyThuVien.Controllers
                 {
                     if (!obj.MucDo.HasValue || obj.MucDo.Value <= 0)
                     {
-                        TempData["error"] = "Vui lòng chọn mức độ hư hỏng !";
+                        TempData["error"] = "Please select level of damage !";
                         return RedirectToAction("Index", "QLTraSach", new { id = obj.IDPhieuMuon });
                     }
                 }
@@ -174,19 +174,19 @@ namespace QuanLyThuVien.Controllers
                 }
 
                 if (obj.TinhTrang == 1)
-                    ls.GhiChuTra = "Bình thường";
+                    ls.GhiChuTra = "Normal";
                     
                 if (obj.TinhTrang == 2)
-                    ls.GhiChuTra = "Sách bị rách";
+                    ls.GhiChuTra = "The book is torn";
 
                 if (obj.TinhTrang == 3)
-                    ls.GhiChuTra = "Sách mất trang";
+                    ls.GhiChuTra = "The book is missing pages";
 
                 if (obj.TinhTrang == 4)
                 {
-                    ls.GhiChuTra = "Sách bị mất";
+                    ls.GhiChuTra = "The book is lost";
                     ls.SoTienPhat = obj.SoLuongTra * sach.GiaTien; // Phạt 10%
-                    ls.GhiChuPhat = "Phạt 100% giá trị sách";
+                    ls.GhiChuPhat = "Fine 100% of the book's value";
                 }
 
                 if (obj.TinhTrang == 2) // Nếu sách bị rách
@@ -196,19 +196,19 @@ namespace QuanLyThuVien.Controllers
                     if (obj.MucDo == 1) // Ít
                     {
                         ls.SoTienPhat = obj.SoLuongTra * (sach.GiaTien * 0.1); // Phạt 10%
-                        ls.GhiChuPhat = "Phạt 10% giá trị sách";
+                        ls.GhiChuPhat = "Fine 10% of the book's value";
                     }
 
                     if (obj.MucDo == 2) // Trung bình
                     {
                         ls.SoTienPhat = obj.SoLuongTra * (sach.GiaTien * 0.2); // Phạt 10%
-                        ls.GhiChuPhat = "Phạt 20% giá trị sách";
+                        ls.GhiChuPhat = "Fine 20% of the book's value";
                     }
 
                     if (obj.MucDo == 3) // Nhiều
                     {
                         ls.SoTienPhat = obj.SoLuongTra * (sach.GiaTien * 0.3); // Phạt 10%
-                        ls.GhiChuPhat = "Phạt 30% giá trị sách";
+                        ls.GhiChuPhat = "Fine 30% of the book's value";
                     }
                 }
 
@@ -219,30 +219,30 @@ namespace QuanLyThuVien.Controllers
                     if (obj.MucDo == 1) // Ít
                     {
                         ls.SoTienPhat = obj.SoLuongTra * (sach.GiaTien * 0.15); // Phạt 10%
-                        ls.GhiChuPhat = "Phạt 15% giá trị sách";
+                        ls.GhiChuPhat = "Fine 15% of the book's value";
                     }
 
                     if (obj.MucDo == 2) // Trung bình
                     {
                         ls.SoTienPhat = obj.SoLuongTra * (sach.GiaTien * 0.3); // Phạt 10%
-                        ls.GhiChuPhat = "Phạt 30% giá trị sách";
+                        ls.GhiChuPhat = "Fine 30% of the book's value";
                     }
 
                     if (obj.MucDo == 3) // Nhiều
                     {
                         ls.SoTienPhat = obj.SoLuongTra * (sach.GiaTien * 0.45); // Phạt 10%
-                        ls.GhiChuPhat = "Phạt 45% giá trị sách";
+                        ls.GhiChuPhat = "Fine 45% of the book's value";
                     }
                 }
                 // Phạt quá hạn trả
                 if (obj.NgayTra > pm.NgayHenTra && obj.TinhTrang >= 1 && obj.TinhTrang < 4)
                 {
-                    ls.GhiChuTra = "Quá hạn trả (20000) + " + ls.GhiChuPhat;
+                    ls.GhiChuTra = "Late return (20000) + " + ls.GhiChuPhat;
                     ls.SoTienPhat = ls.SoTienPhat + (obj.SoLuongTra * 20000);
                 }
                 _db.Add(ls);
                 await _db.SaveChangesAsync();
-                TempData["success"] = "Xác nhận trả sách thành công";
+                TempData["success"] = "Successfully return !";
                 return RedirectToAction("ViewSachMuon", "QuanLyMuonTraSach");
             }
             return RedirectToAction("Index", "QLTraSach", new { id = obj.IDPhieuMuon });

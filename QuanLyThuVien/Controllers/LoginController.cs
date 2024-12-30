@@ -43,7 +43,7 @@ namespace QuanLyThuVien.Controllers
                 // Nếu tài khoản có vai trò là admin hoặc thủ thư
                 // thì cho phép đăng nhập, điều hướng đễn trang Home
 
-                if (taiKhoan.VaiTro == "Admin" || taiKhoan.VaiTro == "Thủ thư")
+                if (taiKhoan.VaiTro == "Admin" || taiKhoan.VaiTro == "Librarian")
                 {
                     // Lưu lại id của người đăng nhập
                     id = taiKhoan.ID_TaiKhoan;
@@ -61,12 +61,12 @@ namespace QuanLyThuVien.Controllers
                     /*return View("Views/Home/Index.cshtml", id);*/
                 } else // Nếu không có quyền admin hay thủ thư thì không cho truy cập
                 {
-                    TempData["message"] = "Bạn không có quyền truy cập vào hệ thống!!!";
+                    TempData["message"] = "You do not have permission to access the system !";
                     return View("Index");
                 }
             }
             // Nếu không tìm thấy tài khoản cũng không cho truy cập.
-            TempData["error"] = "Tài khoản hoặc mật khẩu không chính xác!!!";
+            TempData["error"] = "Wrong username or password !!!";
             return View("Index");
         }
 

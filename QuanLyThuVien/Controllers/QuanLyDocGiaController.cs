@@ -28,11 +28,11 @@ namespace QuanLyThuVien.Controllers
 
             if (lstDocGia.Count <= 0)
             {
-                TempData["message"] = "Không tìm thấy thông độc giả";
+                TempData["message"] = "Patron not found !";
                 return View("Index", lstDocGia);
             }
 
-            TempData["message"] = $"Tìm thấy {lstDocGia.Count()} kết quả";
+            TempData["message"] = $"We found {lstDocGia.Count()} result(s)!";
             return View("Index", lstDocGia);
         }
 
@@ -43,7 +43,7 @@ namespace QuanLyThuVien.Controllers
             IQueryable<DocGia> lstDG = getDataDocGia();
             if(lstDG.Count() <= 0)
             {
-                TempData["message"] = "Dữ liệu trống";
+                TempData["message"] = "Empty";
             }
             return View(lstDG);
         }
@@ -76,7 +76,7 @@ namespace QuanLyThuVien.Controllers
                 if (_db.DocGias.Any(x => x.Email == docGia.Email
                  || x.MaSV == docGia.MaSV))
                 {
-                    TempData["error"] = "Đã tồn tại độc giả với thông tin email và mã sinh viên được nhập !";
+                    TempData["error"] = "A patron with the entered email and student ID already exists !";
                     return View("Create", docGia);
                 }
                 
@@ -101,17 +101,17 @@ namespace QuanLyThuVien.Controllers
 
                                 if (isAddTheThuVien)
                                 {
-                                    TempData["success"] = "Thêm mới độc giả thành công";
+                                    TempData["success"] = "Successfully created !";
                                     return RedirectToAction("Index");
                                 }
                                 else
                                 {
-                                    errMsg = "Thêm thẻ thư viện không thành công !";
+                                    errMsg = "Faild to add libary card !";
                                 } 
                             }
                             else
                             {
-                                errMsg = "Thêm độc giả không thành công !";
+                                errMsg = "Fail to create patron !";
                             } 
 
                         }
@@ -127,7 +127,7 @@ namespace QuanLyThuVien.Controllers
                 }
                 else
                 {
-                    errMsg = "Thêm tài khoản không thành công !";
+                    errMsg = "Fail to add account !";
                 } 
             } 
             catch(Exception ex)
@@ -161,7 +161,7 @@ namespace QuanLyThuVien.Controllers
             {
                 _db.DocGias.Update(obj);
                 await _db.SaveChangesAsync();
-                TempData["success"] = "Sửa thông tin độc giả thành công";
+                TempData["success"] = "Successfully Updated !";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -196,7 +196,7 @@ namespace QuanLyThuVien.Controllers
                 removeTaiKhoan(obj.Email);
                 removeTheThuVien(obj.MaSV);
 
-                TempData["success"] = "Xóa độc giả thành công";
+                TempData["success"] = "Successfully deleted !";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -217,7 +217,7 @@ namespace QuanLyThuVien.Controllers
             TaiKhoan tk = new TaiKhoan();
             tk.TenDangNhap = email;
             tk.MatKhau = "123456";
-            tk.VaiTro = "Độc giả";
+            tk.VaiTro = "Patron";
 
             _db.TaiKhoans.AddAsync(tk);
             if(_db.SaveChanges() > 0)

@@ -28,10 +28,10 @@ namespace QuanLyThuVien.Controllers
                 int tongSach = getTongSach();
                 int tongTK = getTongTK();
                 int tongMuon = getTongMuon();
-                LinkedList<InfoBook> lstDbBook = getLstDbBook();
-                LinkedList<TaiKhoan> lstTaiKhoan = getLstTaiKhoan();
+                //LinkedList<InfoBook> lstDbBook = getLstDbBook();
+                //LinkedList<TaiKhoan> lstTaiKhoan = getLstTaiKhoan();
 
-                Dashboard dashboard = new Dashboard(tenTK, vaiTro, tongDG, tongSach, tongTK, tongMuon, lstDbBook, lstTaiKhoan);
+                Dashboard dashboard = new Dashboard(tenTK, vaiTro, tongDG, tongSach, tongTK, tongMuon);
 
                 return View(dashboard);
             }
@@ -105,50 +105,50 @@ namespace QuanLyThuVien.Controllers
         }
 
         // Method lấy danh sách 10 sách mới nhất
-        public LinkedList<InfoBook> getLstDbBook()
-        {
-            LinkedList<InfoBook> lstDbBook = new LinkedList<InfoBook>();
-            var obj = from s in _db.Saches
-                      from tg in _db.TacGias
-                      from tl in _db.TheLoais
-                      where (s.ID_TacGia == tg.ID_TacGia && s.ID_TheLoai == tl.ID_TheLoai)
-                      orderby s.ID_Sach descending
-                      select new
-                      {
-                          TenSach = s.TenSach,
-                          TenTacGia = tg.TenTacGia,
-                          TenTheLoai = tl.TenTheLoai
-                      };
+        //public LinkedList<InfoBook> getLstDbBook()
+        //{
+        //    LinkedList<InfoBook> lstDbBook = new LinkedList<InfoBook>();
+        //    var obj = from s in _db.Saches
+        //              from tg in _db.TacGias
+        //              from tl in _db.TheLoais
+        //              where (s.ID_TacGia == tg.ID_TacGia && s.ID_TheLoai == tl.ID_TheLoai)
+        //              orderby s.ID_Sach descending
+        //              select new
+        //              {
+        //                  TenSach = s.TenSach,
+        //                  TenTacGia = tg.TenTacGia,
+        //                  TenTheLoai = tl.TenTheLoai
+        //              };
 
-            int i = 0;
-            foreach(var item in obj)
-            {
-                if (i == 10) return lstDbBook;
-                InfoBook data = new InfoBook(item.TenSach, item.TenTacGia, item.TenTheLoai);
-                lstDbBook.AddLast(data);
-                ++i;
-            }
+        //    int i = 0;
+        //    foreach(var item in obj)
+        //    {
+        //        if (i == 10) return lstDbBook;
+        //        InfoBook data = new InfoBook(item.TenSach, item.TenTacGia, item.TenTheLoai);
+        //        lstDbBook.AddLast(data);
+        //        ++i;
+        //    }
 
-            return lstDbBook;
-        }
+        //    return lstDbBook;
+        //}
 
         // Method lấy danh sách 5 tài khoản mới nhất
-        public LinkedList<TaiKhoan> getLstTaiKhoan()
-        {
-            LinkedList<TaiKhoan> lstTK = new LinkedList<TaiKhoan>();
-            var obj = from tk in _db.TaiKhoans
-                      where tk.VaiTro == "Độc giả"
-                      orderby tk.ID_TaiKhoan descending
-                      select tk;
-            int i = 0;
-            foreach (var tk in obj)
-            {
-                if (i == 5) return lstTK;
-                lstTK.AddLast(tk);
-                ++i;
-            }
-            return lstTK;
-        }
+        //public LinkedList<TaiKhoan> getLstTaiKhoan()
+        //{
+        //    LinkedList<TaiKhoan> lstTK = new LinkedList<TaiKhoan>();
+        //    var obj = from tk in _db.TaiKhoans
+        //              where tk.VaiTro == "Độc giả"
+        //              orderby tk.ID_TaiKhoan descending
+        //              select tk;
+        //    int i = 0;
+        //    foreach (var tk in obj)
+        //    {
+        //        if (i == 5) return lstTK;
+        //        lstTK.AddLast(tk);
+        //        ++i;
+        //    }
+        //    return lstTK;
+        //}
 
         public IActionResult Privacy()
         {

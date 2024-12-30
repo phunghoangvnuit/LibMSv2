@@ -1,12 +1,54 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\phung\\Desktop\\LibMSv2\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\phung\\Desktop\\C#\\vnu_programming_3\\Final\\working\\code\\LibMSv2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|c:\\users\\phung\\desktop\\c#\\vnu_programming_3\\final\\working\\code\\libmsv2\\quanlythuvien\\controllers\\quanlymuontrasachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|solutionrelative:quanlythuvien\\controllers\\quanlymuontrasachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|c:\\users\\phung\\desktop\\c#\\vnu_programming_3\\final\\working\\code\\libmsv2\\quanlythuvien\\controllers\\qltrasachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{903E9B24-9915-4F28-A780-CC58201A4E34}|QuanLyThuVien\\QuanLyThuVien.csproj|solutionrelative:quanlythuvien\\controllers\\qltrasachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 136,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuanLyMuonTraSachController.cs",
+              "DocumentMoniker": "C:\\Users\\phung\\Desktop\\C#\\vnu_programming_3\\Final\\working\\code\\LibMSv2\\QuanLyThuVien\\Controllers\\QuanLyMuonTraSachController.cs",
+              "RelativeDocumentMoniker": "QuanLyThuVien\\Controllers\\QuanLyMuonTraSachController.cs",
+              "ToolTip": "C:\\Users\\phung\\Desktop\\C#\\vnu_programming_3\\Final\\working\\code\\LibMSv2\\QuanLyThuVien\\Controllers\\QuanLyMuonTraSachController.cs",
+              "RelativeToolTip": "QuanLyThuVien\\Controllers\\QuanLyMuonTraSachController.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAQwF4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-30T04:57:40.203Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QLTraSachController.cs",
+              "DocumentMoniker": "C:\\Users\\phung\\Desktop\\C#\\vnu_programming_3\\Final\\working\\code\\LibMSv2\\QuanLyThuVien\\Controllers\\QLTraSachController.cs",
+              "RelativeDocumentMoniker": "QuanLyThuVien\\Controllers\\QLTraSachController.cs",
+              "ToolTip": "C:\\Users\\phung\\Desktop\\C#\\vnu_programming_3\\Final\\working\\code\\LibMSv2\\QuanLyThuVien\\Controllers\\QLTraSachController.cs",
+              "RelativeToolTip": "QuanLyThuVien\\Controllers\\QLTraSachController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBYAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-30T04:47:27.99Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

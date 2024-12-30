@@ -93,7 +93,7 @@ namespace QuanLyThuVien.Controllers
         // Get view lập phiếu mượn
         public IActionResult CreatePhieuMuon()
         {
-            if (vaiTro.ToLower() != "thủ thư")
+            if (vaiTro.ToLower() != "librarian")
             {
                 TempData["error"] = "Only librarian can use this feature !";
                 return RedirectToAction("ViewSachMuon", "QuanLyMuonTraSach");
@@ -331,7 +331,7 @@ namespace QuanLyThuVien.Controllers
             if (id == null)
                 return NotFound();
 
-            if (vaiTro.ToLower() != "thủ thư")
+            if (vaiTro.ToLower() != "librarian")
             {
                 TempData["error"] = "Only librarian can use this feature !";
                 return RedirectToAction("ViewSachMuon", "QuanLyMuonTraSach");

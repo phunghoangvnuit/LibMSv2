@@ -22,13 +22,13 @@
         public string TrangThaiStr { get
             {
                 if (TrangThai == 1)
-                    return "Bình thường";
+                    return "Normal";
                 if (TrangThai == 2)
-                    return "Bị rách";
+                    return "The book is torn";
                 if (TrangThai == 3)
-                    return "Bị mất trang";
+                    return "The book is missing pages";
                 if (TrangThai == 4)
-                    return "Bị mất";
+                    return "The book is lost";
                 return "";
             } 
         }
@@ -40,11 +40,11 @@
                 if (MucDo.HasValue)
                 {
                     if (MucDo.Value == 1)
-                        return "Ít";
+                        return "Low";
                     if (MucDo.Value == 2)
-                        return "Trung bình";
+                        return "Average";
                     if (MucDo.Value == 3)
-                        return "Nhiều";
+                        return "High";
                 }
 
                 return "";

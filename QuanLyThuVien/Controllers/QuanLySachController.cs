@@ -24,7 +24,7 @@ namespace QuanLyThuVien.Controllers
             LinkedList<InfoBook> lstSach = getDataSach();
             if(lstSach.Count <= 0)
             {
-                TempData["message"] = "Dữ liệu trống";
+                TempData["message"] = "Empty";
                 return View(lstSach);
             }
             return View(lstSach);
@@ -65,11 +65,11 @@ namespace QuanLyThuVien.Controllers
 
             if (lstSach.Count <= 0)
             {
-                TempData["message"] = "Không tìm thấy thông tin sách";
+                TempData["message"] = "Book not found";
                 return View("Index", lstSach);
             }
 
-            TempData["message"] = $"Tìm thấy {lstSach.Count()} kết quả";
+            TempData["message"] = $"We found {lstSach.Count()} result(s)";
             return View("Index", lstSach);
         }
 
@@ -122,7 +122,7 @@ namespace QuanLyThuVien.Controllers
         {
             if (string.IsNullOrWhiteSpace(infoBook.TenTheLoai))
             {
-                TempData["error"] = "Vui lòng nhập vào tên thể loại !";
+                TempData["error"] = "Please enter category name !";
                 return View("Create", infoBook);
             }
 
@@ -162,7 +162,7 @@ namespace QuanLyThuVien.Controllers
                 {
                     await _db.Saches.AddAsync(sach);
                     await _db.SaveChangesAsync();
-                    TempData["success"] = "Thêm sách mới thành công";
+                    TempData["success"] = "Successfully created !";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -191,7 +191,7 @@ namespace QuanLyThuVien.Controllers
                     {
                         await _db.Saches.AddAsync(sach);
                         await _db.SaveChangesAsync();
-                        TempData["success"] = "Thêm sách mới thành công";
+                        TempData["success"] = "Successfully created !";
                         return RedirectToAction("Index");
                     }
                     catch (Exception ex)
@@ -293,7 +293,7 @@ namespace QuanLyThuVien.Controllers
             {
                 if (string.IsNullOrWhiteSpace(info.TenTheLoai))
                 {
-                    TempData["error"] = "Vui lòng nhập vào tên thể loại !";
+                    TempData["error"] = "Please enter category name !";
                     return View("ViewEdit", info);
                 }
 
@@ -330,7 +330,7 @@ namespace QuanLyThuVien.Controllers
                     {
                         _db.Saches.Update(sach);
                         await _db.SaveChangesAsync();
-                        TempData["success"] = "Cập nhật thông tin sách thành công";
+                        TempData["success"] = "Successfully updated !";
                         return RedirectToAction("Index");
                     }
                     catch (Exception ex)
@@ -355,7 +355,7 @@ namespace QuanLyThuVien.Controllers
                         {
                             _db.Saches.Update(sach);
                             await _db.SaveChangesAsync();
-                            TempData["success"] = "Cập nhật thông tin sách thành công";
+                            TempData["success"] = "Successfully updated !";
                             return RedirectToAction("Index");
                         }
                         catch (Exception ex)
@@ -409,7 +409,7 @@ namespace QuanLyThuVien.Controllers
                 if (obj == null) return NotFound();
                 _db.Saches.Remove(obj);
                 await _db.SaveChangesAsync();
-                TempData["success"] = "Xóa sách thành công";
+                TempData["success"] = "Successfully deleted !";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

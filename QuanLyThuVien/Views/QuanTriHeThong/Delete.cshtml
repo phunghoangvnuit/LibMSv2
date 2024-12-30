@@ -6,24 +6,24 @@
 <main>
     <form method="post" asp-action="DeletePost" style="width: 50%;" id="form-delete">
         <fieldset>
-            <legend>Xóa thông tin</legend>
+            <legend>Delete account</legend>
             <div class="form-group">
-                <label asp-for="ID_TaiKhoan" class="form-label mt-4">Id tài khoản</label>
+                <label asp-for="ID_TaiKhoan" class="form-label mt-4">UserID</label>
                 <input asp-for="ID_TaiKhoan" class="form-control" id="ID_TaiKhoan" type="text" readonly>
             </div>
             <div class="form-group">
-                <label asp-for="TenDangNhap" class="form-label mt-4">Tên tài khoản</label>
+                <label asp-for="TenDangNhap" class="form-label mt-4">Username</label>
                 <input asp-for="TenDangNhap" type="text" class="form-control" id="TenDangNhap" placeholder="Tên tài khoản" readonly>
             </div>
             <div class="form-group">
-                <label asp-for="MatKhau" class="form-label mt-4">Mật khẩu</label>
+                <label asp-for="MatKhau" class="form-label mt-4">Password</label>
                 <input asp-for=MatKhau type="text" class="form-control" id="MatKhau" placeholder="Mật khẩu" readonly>
             </div>
             <div class="form-group">
-                <label asp-for="VaiTro" class="form-label mt-4">Chọn vai trò</label>
+                <label asp-for="VaiTro" class="form-label mt-4">Role</label>
                 <select class="form-select" id="VaiTro" asp-for="VaiTro" disabled>
                     <option>Admin</option>
-                    <option>Thủ thư</option>
+                    <option>Librarian</option>
                  
                 </select>
             </div>
@@ -37,13 +37,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Thông báo</h5>
+                    <h5 class="modal-title">Notice</h5>
                     <button type="button" class="btn-close" value="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Bạn có chắc chắn muốn xóa?</p>
+                    <p>Are you sure you want to delete?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" value="submit" class="btn btn-danger">Yes</button>

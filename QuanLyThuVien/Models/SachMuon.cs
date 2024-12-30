@@ -36,9 +36,9 @@
             get
             {
                 if (NgayHenTra.Date < DateTime.Now.Date)
-                    return "Quá hạn trả";
+                    return "Late return";
                 else
-                    return "Bình thường";
+                    return "Normal";
             }
         }
 
