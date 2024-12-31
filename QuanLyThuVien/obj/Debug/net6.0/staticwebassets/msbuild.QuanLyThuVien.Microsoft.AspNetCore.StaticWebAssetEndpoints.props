@@ -28,13 +28,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Login.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-/7srbuEg4AD8SkmaRY8PZKUEjskV\u002Bv9rudtiv7p7CBU="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"777"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/7srbuEg4AD8SkmaRY8PZKUEjskV\u002Bv9rudtiv7p7CBU=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Dec 2024 14:26:22 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"777"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/7srbuEg4AD8SkmaRY8PZKUEjskV\u002Bv9rudtiv7p7CBU=\u0022"},{"Name":"Last-Modified","Value":"Tue, 31 Dec 2024 04:15:56 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/QuanLyThuVien/css/Login.t1sowwwsxa.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Login.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"t1sowwwsxa"},{"Name":"integrity","Value":"sha256-/7srbuEg4AD8SkmaRY8PZKUEjskV\u002Bv9rudtiv7p7CBU="},{"Name":"label","Value":"_content/QuanLyThuVien/css/Login.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"777"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/7srbuEg4AD8SkmaRY8PZKUEjskV\u002Bv9rudtiv7p7CBU=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Dec 2024 14:26:22 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"777"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/7srbuEg4AD8SkmaRY8PZKUEjskV\u002Bv9rudtiv7p7CBU=\u0022"},{"Name":"Last-Modified","Value":"Tue, 31 Dec 2024 04:15:56 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/QuanLyThuVien/css/site.30jsuewj37.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>

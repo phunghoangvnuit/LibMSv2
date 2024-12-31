@@ -118,7 +118,7 @@ namespace QuanLyThuVien.Controllers
         }
 
         // POST
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeletePost(int? id_taikhoan)
         {
